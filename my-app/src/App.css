@@ -1,29 +1,29 @@
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 50px auto;
-    max-width: 400px;
+.landing-form-group{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-auto-rows: auto;    
+  }
+  .landing-grid-qr{
+    grid-column: 2/7;
   }
   
-  label {
-    font-size: 20px;
+  .landing-image{
+    grid-column: 1;
+    grid-row: 1/4;
+  }
+
+  .landing-form-label {
+    font-size: xx-large;
     font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .form-control{
+    font-size: xx-large;
     margin-bottom: 20px;
   }
   
-  input[type="text"] {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 18px;
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 20px;
-  }
-  
-  button[type="submit"] {
+  .landing-enter-button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -31,9 +31,11 @@ form {
     border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
+    width: 20%;
   }
   
-  button[type="submit"]:hover {
+  .landing-enter-button:hover {
     background-color: #3e8e41;
   }
+  
   
