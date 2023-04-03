@@ -1,5 +1,6 @@
 import "./bootstrap.min.css";
 import "./App.css";
+import Navbar from "./navbar";
 import cube from "./images/cube.png";
 import React, { useState } from "react";
 
@@ -16,6 +17,7 @@ function QR_landing() {
   };
   return (
     <React.Fragment>
+      <Navbar />
       <div className="landing-form-group">
         <div className="landing-grid-qr">
           <label className="landing-form-label">QR Hint</label>
