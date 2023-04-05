@@ -1,9 +1,13 @@
 import "./bootstrap.min.css";
 import "./App.css";
-import QR_landing from "./QR landing";
+import Admin from "./Admin";
 
 function App() {
-  return <QR_landing />;
+  return (
+  <div>
+    <Admin />
+  </div>  
+  );
 }
 
 export default App;
