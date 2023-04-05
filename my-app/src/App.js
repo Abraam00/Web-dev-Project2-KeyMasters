@@ -3,11 +3,12 @@ import "./App.css";
 import QR_landing from "./QR landing";
 import React from "react";
 import Admin from "./Admin";
+import Login from "./Login";
 
 function App() {
   return (
     <div>
-      <QR_landing />
+      <Login />
     </div>
   );
 }
