@@ -11,9 +11,9 @@ exports.create = (req, res) => {
 
     // Create a Note
     const qr = new QR({
-        title: req.body.title || "Untitled team name",
-        content: req.body.content,
-        email: req.user
+        url: req.body.title || "Untitled team name",
+        Qindex: req.body.content,
+        body: req.user
     });
 
     // Save Note in the database
@@ -29,9 +29,9 @@ exports.create = (req, res) => {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    Note.find()
-        .then(notes => {
-            res.send(notes);
+    QR.find()
+        .then(qr => {
+            res.send(qr);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -41,15 +41,15 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-    Note.findById(req.params.noteId)
-        .then(note => {
-            if (!note) {
+    QR.findById(req.params.qrid)
+        .then(qr => {
+            if (!qr) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
-            if (note.email == req.user) {
-                res.send(note);
+            if (qr.body == req.user) {
+                res.send(qr);
             }
             else {
                 res.send({});
@@ -58,11 +58,11 @@ exports.findOne = (req, res) => {
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving note with id " + req.params.noteId
+                message: "Error retrieving note with id " + req.params.qrid
             });
         });
 };
@@ -77,21 +77,21 @@ exports.update = (req, res) => {
     }
 
     // Find note and update it with the request body
-    Note.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled Note",
-        content: req.body.content
+    QR.findByIdAndUpdate(req.params.noteId, {
+        url: req.body.title || "Untitled Note",
+        body: req.body.content
     }, { new: true })
-        .then(note => {
-            if (!note) {
+        .then(qr => {
+            if (!qr) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
             return res.status(500).send({
@@ -102,22 +102,22 @@ exports.update = (req, res) => {
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Note.findByIdAndRemove(req.params.noteId)
-        .then(note => {
-            if (!note) {
+    QR.findByIdAndRemove(req.params.noteId)
+        .then(qr => {
+            if (!qr) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
             res.send({ message: "Note deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.qrid
                 });
             }
             return res.status(500).send({
-                message: "Could not delete note with id " + req.params.noteId
+                message: "Could not delete note with id " + req.params.qrid
             });
         });
 };

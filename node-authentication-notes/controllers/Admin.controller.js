@@ -9,13 +9,13 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a Note
+    // Create a Admin
     const admin = new Admin({
         adminname: req.body.title || "Untitled team name",
         password: req.body.content,
     });
 
-    // Save Note in the database
+    // Save Admin in the database
     admin.save()
         .then(data => {
             res.send(data);
