@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(8,1fr);
     grid-auto-rows: auto;    
+    height: 100vh;
   }
   .landing-grid-qr{
     grid-column: 2/7;
@@ -41,4 +42,10 @@
   .adminTopBanner {
     text-align: center;
     background-color: black;
+  }
+
+  .adminBody {
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    grid-auto-rows: auto;
   }
