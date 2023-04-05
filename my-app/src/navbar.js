@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -9,26 +10,24 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
-                Rules
-                <span className="visually-hidden">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" href="./QR landing.js">
+              <Link to="./QRLanding" className="nav-link active">
                 QR Hint
-                <span className="visually-hidden">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Leaderboard
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="./Admin.js">
+              <Link to="./Admin" className="nav-link active">
                 Admin
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="./Leaderboard" className="nav-link active">
+                Leaderboard
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="./Login" className="nav-link active">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
