@@ -1,4 +1,4 @@
-/*const Lboard = require('../models/note.model.js');
+const Lboard = require('../models/note.model.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
@@ -121,4 +121,3 @@ exports.delete = (req, res) => {
             });
         });
 };
-*/

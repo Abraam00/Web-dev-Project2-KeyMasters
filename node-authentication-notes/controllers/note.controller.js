@@ -1,4 +1,4 @@
-const Note = require('../models/note.model.js');
+const Admin = require('../models/note.model.js');
 
 // Create and Save a new Note
 exports.create = (req, res) => {
@@ -10,7 +10,7 @@ exports.create = (req, res) => {
     }
 
     // Create a Note
-    const note = new Note({
+    const note = new Admin({
         title: req.body.title || "Untitled Note",
         content: req.body.content,
         email: req.user
