@@ -83,7 +83,7 @@ exports.update = (req, res) => {
         .then(user => {
             if (!user) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with  " + req.params.noteId
                 });
             }
             res.send(user);
