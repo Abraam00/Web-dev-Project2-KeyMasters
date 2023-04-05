@@ -6,9 +6,9 @@ import Admin from "./Admin";
 
 function App() {
   return (
-  <div>
-    <Admin />
-  </div>  
+    <div>
+      <QR_landing />
+    </div>
   );
 }
 
