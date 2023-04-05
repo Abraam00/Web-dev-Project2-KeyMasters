@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 const NoteSchema = mongoose.Schema({
-    title: {
+    Qrindex: { //specific QR code found
         type: String,
         required: true
     },
-    content: {
+    Qr_id: { //this is the unique _id automatically generated at time of QR code creation
         type: String,
         required: true
     },
-    email: {
+    teamname: { //ties the find to the finding team
         type: String
-    }
+    } // need an automatic process to add flags to track finds  -still working
 }, {
     timestamps: true
 });

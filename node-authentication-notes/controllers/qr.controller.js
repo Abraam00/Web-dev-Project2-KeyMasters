@@ -1,6 +1,6 @@
-const Admin = require('../models/note.model.js');
+const QR = require('../models/note.model.js');
 
-// Create and Save a new Note
+// Create and Save a new Qr code id
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.content) {
@@ -10,19 +10,19 @@ exports.create = (req, res) => {
     }
 
     // Create a Note
-    const note = new Admin({
-        title: req.body.title || "Untitled Note",
+    const qr = new QR({
+        title: req.body.title || "Untitled team name",
         content: req.body.content,
         email: req.user
     });
 
     // Save Note in the database
-    note.save()
+    qr.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Note."
+                message: err.message || "Some error occurred while creating the qr id."
             });
         });
 };
