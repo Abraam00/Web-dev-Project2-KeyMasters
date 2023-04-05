@@ -11,8 +11,8 @@ exports.create = (req, res) => {
 
     // Create a Note
     const admin = new Admin({
-        title: req.body.title || "Untitled team name",
-        content: req.body.content,
+        adminname: req.body.title || "Untitled team name",
+        password: req.body.content,
     });
 
     // Save Note in the database
