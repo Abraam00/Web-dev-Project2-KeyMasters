@@ -1,4 +1,3 @@
-const admin = require('../models/admin.js');
 const Admin = require('../models/admin.js');
 
 // Create and Save a new User code id
@@ -6,7 +5,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.content) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "Admin content can not be empty"
         });
     }
 
