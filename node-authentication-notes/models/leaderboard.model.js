@@ -6,11 +6,11 @@ const LeaderboardSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    _found: { //number of QR codes found
+    _found: { //number of QR codes found  is this updated as a running tally? or should there be a record of the clues found?
         type: String,
         required: true
     },
-    timestamps: { //do we need this?
+    timestamps: { //reads the timestamp of the most recent found QR code
         type: String
     }
 }, {
