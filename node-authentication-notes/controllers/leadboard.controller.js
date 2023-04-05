@@ -10,14 +10,14 @@ exports.create = (req, res) => {
     }
 
     // Create a Note
-    const qr = new QR({
+    const lboard = new Lboard({
         title: req.body.title || "Untitled team name",
         content: req.body.content,
         email: req.user
     });
 
     // Save Note in the database
-    qr.save()
+    lboard.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
