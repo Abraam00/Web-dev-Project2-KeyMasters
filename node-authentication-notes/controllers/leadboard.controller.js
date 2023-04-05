@@ -11,9 +11,9 @@ exports.create = (req, res) => {
 
     // Create a Note
     const lboard = new Lboard({
-        title: req.body.title || "Untitled team name",
-        content: req.body.content,
-        email: req.user
+        teamname: req.body.title || "Untitled team name",
+        _found: req.body.content,
+        timestamp: req.user
     });
 
     // Save Note in the database
@@ -29,9 +29,9 @@ exports.create = (req, res) => {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    Note.find()
-        .then(notes => {
-            res.send(notes);
+    Lboard.find()
+        .then(lboard => {
+            res.send(lboard);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -39,9 +39,9 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single note with a noteId
+/*// Find a single note with a noteId
 exports.findOne = (req, res) => {
-    Note.findById(req.params.noteId)
+    Lboard.findById(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
@@ -65,7 +65,7 @@ exports.findOne = (req, res) => {
                 message: "Error retrieving note with id " + req.params.noteId
             });
         });
-};
+};*/
 
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
@@ -77,47 +77,25 @@ exports.update = (req, res) => {
     }
 
     // Find note and update it with the request body
-    Note.findByIdAndUpdate(req.params.noteId, {
+    Lboard.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
         content: req.body.content
     }, { new: true })
-        .then(note => {
-            if (!note) {
+        .then(lboard => {
+            if (!lboard) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.L_id
                 });
             }
-            res.send(note);
+            res.send(lboard);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.L_id
                 });
             }
             return res.status(500).send({
-                message: "Error updating note with id " + req.params.noteId
-            });
-        });
-};
-
-// Delete a note with the specified noteId in the request
-exports.delete = (req, res) => {
-    Note.findByIdAndRemove(req.params.noteId)
-        .then(note => {
-            if (!note) {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
-                });
-            }
-            res.send({ message: "Note deleted successfully!" });
-        }).catch(err => {
-            if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
-                });
-            }
-            return res.status(500).send({
-                message: "Could not delete note with id " + req.params.noteId
+                message: "Error updating note with id " + req.params.L_id
             });
         });
 };

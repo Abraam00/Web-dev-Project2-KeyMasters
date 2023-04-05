@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     // Create a Note
     const user = new User({
         title: req.body.title || "Untitled team name",
-        content: req.body.content,
+        /*content: req.body.content,*/
     });
 
     // Save Note in the database
@@ -26,14 +26,14 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve and return all notes from the database.
+// Retrieve and return all qr ids from the database.
 exports.findAll = (req, res) => {
     User.find()
         .then(user => {
             res.send(user);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving notes."
+                message: err.message || "Some error occurred while retrieving qr id."
             });
         });
 };
