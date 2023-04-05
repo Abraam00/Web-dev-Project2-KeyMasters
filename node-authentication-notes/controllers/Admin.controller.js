@@ -1,37 +1,36 @@
-const Lboard = require('../models/note.model.js');
+const Admin = require('../models/admin.js');
 
-// Create and Save a new Qr code id
+// Create and Save a new User code id
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.content) {
         return res.status(400).send({
-            message: "Leadboard content can not be empty"
+            message: "Admin content can not be empty"
         });
     }
 
     // Create a Note
-    const lboard = new Lboard({
+    const admin = new Admin({
         title: req.body.title || "Untitled team name",
         content: req.body.content,
-        email: req.user
     });
 
     // Save Note in the database
-    lboard.save()
+    admin.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the qr id."
+                message: err.message || "Some error occurred while creating the Admin id."
             });
         });
 };
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    Note.find()
-        .then(notes => {
-            res.send(notes);
+    Admin.find()
+        .then(admin => {
+            res.send(admin);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -41,14 +40,14 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-    Note.findById(req.params.noteId)
-        .then(note => {
-            if (!note) {
+    Admin.findById(req.params.noteId)
+        .then(admin => {
+            if (!admin) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.adminid
                 });
             }
-            if (note.email == req.user) {
+            if (admin.adminname == req.user) {
                 res.send(note);
             }
             else {
@@ -58,11 +57,11 @@ exports.findOne = (req, res) => {
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.adminid
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving note with id " + req.params.noteId
+                message: "Error retrieving note with id " + req.params.adminid
             });
         });
 };
@@ -77,47 +76,47 @@ exports.update = (req, res) => {
     }
 
     // Find note and update it with the request body
-    Note.findByIdAndUpdate(req.params.noteId, {
+    Admin.findByIdAndUpdate(req.params.adminid, {
         title: req.body.title || "Untitled Note",
         content: req.body.content
     }, { new: true })
-        .then(note => {
-            if (!note) {
+        .then(admin => {
+            if (!admin) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with  " + req.params.adminid
                 });
             }
-            res.send(note);
+            res.send(admin);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.adminid
                 });
             }
             return res.status(500).send({
-                message: "Error updating note with id " + req.params.noteId
+                message: "Error updating note with id " + req.params.adminid
             });
         });
 };
 
-// Delete a note with the specified noteId in the request
+// Delete a admin with the specified admin idin the request
 exports.delete = (req, res) => {
-    Note.findByIdAndRemove(req.params.noteId)
-        .then(note => {
-            if (!note) {
+    Admin.findByIdAndRemove(req.params.adminid)
+        .then(admin=> {
+            if (!admin) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "User not found with id " + req.params.adminid
                 });
             }
             res.send({ message: "Note deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "Note not found with id " + req.params.adminid
                 });
             }
             return res.status(500).send({
-                message: "Could not delete note with id " + req.params.noteId
+                message: "Could not delete note with id " + req.params.adminid
             });
         });
 };

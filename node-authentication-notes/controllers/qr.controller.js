@@ -1,4 +1,4 @@
-const QR = require('../models/note.model.js');
+const QR = require('../models/qr.model.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
