@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     const lboard = new Lboard({
         teamname: req.body.title || "Untitled team name",
         _found: req.body.content,
+        published: req.body.published ? req.body.published :false,
         timestamp: req.user
     });
 
@@ -28,7 +29,7 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all notes from the database.
-exports.findAll = (req, res) => {
+/*exports.findAll = (req, res) => {
     Lboard.find()
         .then(lboard => {
             res.send(lboard);
@@ -38,34 +39,19 @@ exports.findAll = (req, res) => {
             });
         });
 };
+*/
 
-/*// Find a single note with a noteId
-exports.findOne = (req, res) => {
-    Lboard.findById(req.params.noteId)
-        .then(note => {
-            if (!note) {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
-                });
-            }
-            if (note.email == req.user) {
-                res.send(note);
-            }
-            else {
-                res.send({});
-            }
-
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
-                });
-            }
-            return res.status(500).send({
-                message: "Error retrieving note with id " + req.params.noteId
-            });
+exports.findAllPublished =(req,res)=> {
+    Lboard.find({published:true})
+    .then(data =>{
+        res.send(data);
+    })
+    .catch(eer =>{
+        res.status(500).send({
+            message: err.message || "Could not retrieve all published Admins"
         });
-};*/
+    });
+};
 
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {

@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     const user = new User({
         title: req.body.title || "Untitled team name",
         /*content: req.body.content,*/
+        published: req.body.published ? req.body.published :false,
     });
 
     // Save Note in the database
@@ -119,4 +120,15 @@ exports.delete = (req, res) => {
                 message: "Could not delete note with id " + req.params.noteId
             });
         });
+};
+exports.findAllPublished =(req,res)=> {
+    User.find({published:true})
+    .then(data =>{
+        res.send(data);
+    })
+    .catch(eer =>{
+        res.status(500).send({
+            message: err.message || "Could not retrieve all published Admins"
+        });
+    });
 };

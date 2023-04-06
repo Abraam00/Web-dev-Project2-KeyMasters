@@ -1,4 +1,5 @@
 const Admin = require('../models/admin.js');
+const { options } = require('../routes/note.routes.js');
 
 // Create and Save a new User code id
 exports.create = (req, res) => {
@@ -11,11 +12,12 @@ exports.create = (req, res) => {
 
     // Create a Admin
     const admin = new Admin({
-        adminname: req.body.title || "Untitled team name",
-        password: req.body.content,
+        title: req.body.title || "Untitled team name",
+        content: req.body.content,
+        published: req.body.published ? req.body.published :false
     });
 
-    // Save Admin in the database
+    // Save admin in the database
     admin.save()
         .then(data => {
             res.send(data);
@@ -26,11 +28,11 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve and return all notes from the database.
+// Retrieve and return all adminids from the database.
 exports.findAll = (req, res) => {
-    Admin.find()
-        .then(admin => {
-            res.send(admin);
+    Admin.find(condition)
+        .then(data => {
+            res.send(data);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -77,7 +79,7 @@ exports.update = (req, res) => {
 
     // Find note and update it with the request body
     Admin.findByIdAndUpdate(req.params.adminid, {
-        title: req.body.title || "Untitled Note",
+        title: req.body.title || "Untitled AdminId",
         content: req.body.content
     }, { new: true })
         .then(admin => {
@@ -119,4 +121,15 @@ exports.delete = (req, res) => {
                 message: "Could not delete note with id " + req.params.adminid
             });
         });
+};
+exports.findAllPublished =(req,res)=> {
+    Admin.find({published:true})
+    .then(data =>{
+        res.send(data);
+    })
+    .catch(eer =>{
+        res.status(500).send({
+            message: err.message || "Could not retrieve all published Admins"
+        });
+    });
 };
