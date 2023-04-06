@@ -1,19 +1,19 @@
-.landing-form-group{
+.landingFormGroup{
     display: grid;
     grid-template-columns: repeat(8,1fr);
     grid-auto-rows: auto;    
     height: 100vh;
   }
-  .landing-grid-qr{
+  .landingGridQR{
     grid-column: 2/7;
   }
   
-  .landing-image{
+  .landingImage{
     grid-column: 1;
     grid-row: 1/4;
   }
 
-  .landing-form-label {
+  .landingFormLabel {
     font-size: xx-large;
     font-weight: bold;
     margin-bottom: 10px;
@@ -24,7 +24,7 @@
     margin-bottom: 20px;
   }
   
-  .landing-enter-button {
+  .landingEnterButton {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -35,7 +35,7 @@
     width: 20%;
   }
   
-  .landing-enter-button:hover {
+  .landingEnterButton:hover {
     background-color: #3e8e41;
   }
   
@@ -48,4 +48,12 @@
     display: grid;
     grid-template-columns: repeat(8,1fr);
     grid-auto-rows: auto;
+  }
+
+  .loginFormGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
   }
