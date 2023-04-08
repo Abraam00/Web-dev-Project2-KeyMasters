@@ -27,19 +27,26 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-    bcrypt.hash(req.body.password, rounds, (error, hash) => {
-        if (error) res.status(500).json(error)
-        else {
-            const newUser = User({ email: req.body.email, password: hash })
-            newUser.save()
-                .then(user => {
-                    res.status(200).json({ token: generateToken(user.email) })
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            if (user) res.status(404).json({ error: 'user already exists' })//checks for existing user
+            else {
+
+                bcrypt.hash(req.body.password, rounds, (error, hash) => {
+                    if (error) res.status(500).json(error)
+                    else {
+                        const newUser = User({ email: req.body.email, password: hash })
+                        newUser.save()
+                            .then(user => {
+                                res.status(200).json({ token: generateToken(user.email) })
+                            })
+                            .catch(error => {
+                                res.status(500).json(error)
+                            })
+                    }
                 })
-                .catch(error => {
-                    res.status(500).json(error)
-                })
-        }
-    })
+            }
+        })
 });
 
 router.get('/jwt-test', middleware.verify, (req, res) => {
