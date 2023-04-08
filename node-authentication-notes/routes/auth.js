@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => { //updated to check db for existing user t
                         const newUser = User({ teamname: req.body.teamname, password: hash })
                         newUser.save()
                             .then(user => {
-                                res.status(200).json({ token: generateToken(user.email) })
+                                res.status(200).json({ token: generateToken(user.teamname) })
                             })
                             .catch(error => {
                                 res.status(500).json(error)

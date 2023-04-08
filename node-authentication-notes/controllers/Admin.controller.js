@@ -1,5 +1,5 @@
 const Admin = require('../models/admin.js');
-const { options } = require('../routes/note.routes.js');
+//const { options } = require('../routes/note.routes.js');
 
 // Create and Save a new User code id
 exports.create = (req, res) => {
@@ -12,9 +12,9 @@ exports.create = (req, res) => {
 
     // Create a Admin
     const admin = new Admin({
-        title: req.body.title || "Untitled team name",
-        content: req.body.content,
-        published: req.body.published ? req.body.published :false
+        adminname: req.body.adminname || "Untitled admin name",
+        password: req.body.password,
+        //published: req.body.published ? req.body.published : false
     });
 
     // Save admin in the database
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     // Find note and update it with the request body
     Admin.findByIdAndUpdate(req.params.adminid, {
-        title: req.body.title || "Untitled AdminId",
+        adminname: req.body.adminname || "Untitled AdminId",
         content: req.body.content
     }, { new: true })
         .then(admin => {
@@ -104,7 +104,7 @@ exports.update = (req, res) => {
 // Delete a admin with the specified admin idin the request
 exports.delete = (req, res) => {
     Admin.findByIdAndRemove(req.params.adminid)
-        .then(admin=> {
+        .then(admin => {
             if (!admin) {
                 return res.status(404).send({
                     message: "User not found with id " + req.params.adminid
@@ -122,14 +122,14 @@ exports.delete = (req, res) => {
             });
         });
 };
-exports.findAllPublished =(req,res)=> {
-    Admin.find({published:true})
-    .then(data =>{
-        res.send(data);
-    })
-    .catch(eer =>{
-        res.status(500).send({
-            message: err.message || "Could not retrieve all published Admins"
+exports.findAllPublished = (req, res) => {
+    Admin.find({ published: true })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(eer => {
+            res.status(500).send({
+                message: err.message || "Could not retrieve all published Admins"
+            });
         });
-    });
 };
