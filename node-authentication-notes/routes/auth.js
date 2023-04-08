@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
         })
 });
 
-router.post('/signup', (req, res) => {
+router.post('/signup', (req, res) => { //updated to check db for existing user to avoid duplicates
     User.findOne({ email: req.body.email })
         .then(user => {
             if (user) res.status(404).json({ error: 'user already exists' })//checks for existing user
