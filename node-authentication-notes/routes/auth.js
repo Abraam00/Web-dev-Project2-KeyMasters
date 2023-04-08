@@ -10,7 +10,7 @@ const tokenSecret = "my-token-secret"
 const middleware = require('../middlewares')
 
 router.post('/login', (req, res) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ teamname: req.body.teamname })
         .then(user => {
             if (!user) res.status(404).json({ error: 'no user with that email found' })
             else {
@@ -27,7 +27,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => { //updated to check db for existing user to avoid duplicates
-    User.findOne({ email: req.body.email })
+    User.findOne({ teamname: req.body.teamname })
         .then(user => {
             if (user) res.status(404).json({ error: 'user already exists' })//checks for existing user
             else {
@@ -35,7 +35,7 @@ router.post('/signup', (req, res) => { //updated to check db for existing user t
                 bcrypt.hash(req.body.password, rounds, (error, hash) => {
                     if (error) res.status(500).json(error)
                     else {
-                        const newUser = User({ email: req.body.email, password: hash })
+                        const newUser = User({ teamname: req.body.teamname, password: hash })
                         newUser.save()
                             .then(user => {
                                 res.status(200).json({ token: generateToken(user.email) })

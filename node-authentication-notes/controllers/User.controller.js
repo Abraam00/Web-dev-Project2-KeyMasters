@@ -11,9 +11,9 @@ exports.create = (req, res) => {
 
     // Create a Note
     const user = new User({
-        title: req.body.title || "Untitled team name",
+        teamname: req.body.teamname || "Untitled team name",
         /*content: req.body.content,*/
-        published: req.body.published ? req.body.published :false,
+        published: req.body.published ? req.body.published : false,
     });
 
     // Save Note in the database
@@ -48,7 +48,7 @@ exports.findOne = (req, res) => {
                     message: "Note not found with id " + req.params.noteId
                 });
             }
-            if (user.email == req.user) {
+            if (user.teamname == req.user) {
                 res.send(note);
             }
             else {
@@ -78,7 +78,7 @@ exports.update = (req, res) => {
 
     // Find note and update it with the request body
     User.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled Note",
+        teamname: req.body.teamname || "Untitled Note", //updated
         content: req.body.content
     }, { new: true })
         .then(user => {
@@ -121,14 +121,14 @@ exports.delete = (req, res) => {
             });
         });
 };
-exports.findAllPublished =(req,res)=> {
-    User.find({published:true})
-    .then(data =>{
-        res.send(data);
-    })
-    .catch(eer =>{
-        res.status(500).send({
-            message: err.message || "Could not retrieve all published Admins"
+exports.findAllPublished = (req, res) => {
+    User.find({ published: true })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(eer => {
+            res.status(500).send({
+                message: err.message || "Could not retrieve all published Admins"
+            });
         });
-    });
 };
