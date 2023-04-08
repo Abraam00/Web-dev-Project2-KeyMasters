@@ -12,3 +12,4 @@ const model = mongoose.Schema({
 });
 
 module.exports = new mongoose.model("User", model)
+//module.exports = new mongoose.model("Admin", model)
