@@ -1,3 +1,5 @@
+//It seemed to me that the path for authorizing an admin should be different 
+//than a user if we have password for admin and not for teams.  Thoughts?
 const express = require('express')
 const router = express.Router()
 const Admin = require('../models/admin')

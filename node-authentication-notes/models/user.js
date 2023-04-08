@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const model = mongoose.Schema({
-    title: {
+    teamname: {
         type: String,
         required: true
     }/*,
