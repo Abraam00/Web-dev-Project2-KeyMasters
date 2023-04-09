@@ -18,33 +18,35 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div className="loginFormGroup">
+    <div>
       <div className="adminTopBanner">
         <h1>Admin Page</h1>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Username"
-            id="inputDefault"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <div className="loginFormGroup">
+        <form onSubmit={handleSubmit}>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              id="inputDefault"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 };

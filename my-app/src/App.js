@@ -9,15 +9,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<QRLanding />} />
-        <Route path="/Admin" element={<Admin />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/QRLanding" element={<QRLanding />} />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Navbar />
+    //   <Routes>
+    //     <Route path="/" element={<QRLanding />} />
+    //     <Route path="/Admin" element={<Login />} />
+    //     <Route path="/QRLanding" element={<QRLanding />} />
+    //   </Routes>
+    // </BrowserRouter>
+    <Login />
   );
 }
 
