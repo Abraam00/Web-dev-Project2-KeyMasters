@@ -25,8 +25,8 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="./Login" className="nav-link active">
-                Login
+              <Link to="./Rules" className="nav-link active">
+                Rules
               </Link>
             </li>
           </ul>
