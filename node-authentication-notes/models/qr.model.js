@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 
 //inputting this on the admin page will generate an _id code automatically to be used as unique identifier in URL
 const QrSchema = mongoose.Schema({
@@ -17,4 +17,4 @@ const QrSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('QR', QrSchema);
+module.exports = mongoose.model('QR', QrSchema);*/

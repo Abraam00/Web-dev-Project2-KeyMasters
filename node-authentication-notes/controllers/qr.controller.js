@@ -1,4 +1,4 @@
-const QR = require('../models/qr.model.js');
+/*const QR = require('../models/qr.model.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
@@ -120,4 +120,4 @@ exports.delete = (req, res) => {
                 message: "Could not delete note with id " + req.params.qrid
             });
         });
-};
+};*/
