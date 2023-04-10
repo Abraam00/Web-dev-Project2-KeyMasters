@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const authRoute = require('./routes/auth');
-const adminRoute = require('./routes/adminauth');
+const adminRoute = require('./routes/adminauth.js');
 const noteRoute = require('./routes/note.routes.js');
 
 const dbURI = "mongodb://127.0.0.1/pies";
