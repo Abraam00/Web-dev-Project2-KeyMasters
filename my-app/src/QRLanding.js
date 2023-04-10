@@ -4,7 +4,7 @@ import cube from "./images/cube.png";
 import React, { useState } from "react";
 import axios from "axios";
 
-function QR_landing() {
+function QRLanding() {
   const [teamName, setTeamName] = useState("");
   const [teamExists, setTeamExists] = useState(false);
 
@@ -16,15 +16,16 @@ function QR_landing() {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
   };
+
   return (
     <div className="landingFormGroup">
       <div className="landingGridQR">
-        <label className="landingFormLabel">QR Hint</label>
-        <textarea className="form-control" rows="5"></textarea>
+        <label className="landingFormLabel">Description</label>
+        <textarea className="form-control" rows="5" disabled="true"></textarea>
         <label className="landingFormLabel">Enter team name:</label>
         <input
           className="form-control"
-          placeholder="e.g., sprinters"
+          placeholder="e.g. Sprinters"
           type="text"
           value={teamName}
           onChange={handleInputChange}
@@ -34,8 +35,9 @@ function QR_landing() {
         </button>
       </div>
       <img className="landingImage" src={cube} alt="cube qr code" />
+      <button className="leaderboardButton">Show Leaderboard</button>
     </div>
   );
 }
 
-export default QR_landing;
+export default QRLanding;

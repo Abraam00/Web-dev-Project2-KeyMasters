@@ -15,18 +15,8 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="./Admin" className="nav-link active">
-                Admin
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link to="./Leaderboard" className="nav-link active">
                 Leaderboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="./Rules" className="nav-link active">
-                Rules
               </Link>
             </li>
           </ul>
