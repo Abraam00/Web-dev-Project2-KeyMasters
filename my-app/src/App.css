@@ -57,3 +57,71 @@
     justify-content: center;
     height: 100vh;
   }
+
+  .adminFormGroup{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 50px;
+    padding: 50px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .button-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin: 20px;
+  }
+  
+  .button-container.submitted {
+    grid-column: 2 / 3;
+  }
+  
+  .picture-container {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+  }
+  
+  .form-container {
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form label {
+    margin-bottom: 10px;
+  }
+  
+  .form input,
+  .form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .form button {
+    align-self: flex-end;
+  }
+  

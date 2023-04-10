@@ -17,7 +17,7 @@ function App() {
     //     <Route path="/QRLanding" element={<QRLanding />} />
     //   </Routes>
     // </BrowserRouter>
-    <Login />
+    <Admin />
   );
 }
 
