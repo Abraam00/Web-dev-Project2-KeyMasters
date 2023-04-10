@@ -3,7 +3,8 @@ const Note = require('../models/note.model.js');
 // Create and Save a new Note
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.content) {
+    if (!req.body.Qr_id) {
+        //if (!req.body.content) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
@@ -11,9 +12,12 @@ exports.create = (req, res) => {
 
     // Create a Note
     const note = new Note({
-        title: req.body.title || "Untitled Note",
+        Qrindex: req.body.Qrindex || "Untitled Note",
+        Qr_id: req.body.Qr_id,
+        teamname: req.user
+        /*title: req.body.title || "Untitled Note",
         content: req.body.content,
-        email: req.user
+        email: req.user*/
     });
 
     // Save Note in the database

@@ -1,9 +1,21 @@
 import "./bootstrap.min.css";
 import "./App.css";
-import QR_landing from "./QR landing";
+import QRLanding from "./QRLanding";
+import React from "react";
+import Navbar from "./navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return <QR_landing />;
+  return (
+    <BrowserRouter>
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path="/" element={<QRLanding />} />
+        <Route path="/leaderboard" element={<QRLanding />} />
+        <Route path="/QRLanding" element={<QRLanding />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

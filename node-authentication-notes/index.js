@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const authRoute = require('./routes/auth');
+const adminRoute = require('./routes/adminauth.js');
 const noteRoute = require('./routes/note.routes.js');
 
 const dbURI = "mongodb://127.0.0.1/pies";
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
 app.use('/api/auth', authRoute);
+app.use('/api/adminauth', adminRoute);
 app.use('/api', noteRoute);
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
