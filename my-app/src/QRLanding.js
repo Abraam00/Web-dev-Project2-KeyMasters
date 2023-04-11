@@ -3,8 +3,10 @@ import "./App.css";
 import cube from "./images/cube.png";
 import React, { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 function QRLanding() {
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const [teamExists, setTeamExists] = useState(false);
 
@@ -35,7 +37,13 @@ function QRLanding() {
         </button>
       </div>
       <img className="landingImage" src={cube} alt="cube qr code" />
-      <button className="leaderboardButton">Show Leaderboard</button>
+      <button
+        className="leaderboardButton"
+        onClick={() => setShowLeaderboard(true)}
+      >
+        Show Leaderboard
+      </button>
+      {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
     </div>
   );
 }
