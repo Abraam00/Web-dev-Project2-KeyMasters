@@ -26,12 +26,6 @@ const Leaderboard = () => {
 
       {/* Show a leaderboard table of team name and their score */}
       <div className="leaderboardContainer d-flex">
-        <button
-          className="leaderboardButton leaderboardButtonW10"
-          onClick={() => setBack(true)}
-        >
-          Back to Scan another QR
-        </button>
         <div className="d-flex flex-column leaderboardTableContainer">
           {/* Show heading in center */}
           <h1 className="text-center">Top 10 teams</h1>
@@ -55,6 +49,9 @@ const Leaderboard = () => {
               })}
             </tbody>
           </table>
+          <button className="QrHintButton" onClick={() => setBack(true)}>
+            Back to Scan another QR
+          </button>
         </div>
       </div>
     </>
