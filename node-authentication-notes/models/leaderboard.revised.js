@@ -17,4 +17,4 @@ const LeaderboardSchema = mongoose.Schema({
     timestamps: true //applies a timestamp for updating leaderboard
 });
 
-module.exports = mongoose.model('QR', QrSchema);
+module.exports = mongoose.model('Leaderboard', LeaderboardSchema);

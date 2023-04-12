@@ -2,25 +2,25 @@ const express = require('express');
 const router = express.Router();
 
 // NOTE: Add middleware to verify requests!
-const middleware = require('../middlewares');
+//const middleware = require('../middlewares');
 
-const notes = require('../controllers/note.controller.js');
+const leaderboard = require('../controllers/leaderboard.controller.js');
 
-// Create a new Note
-router.post('/notes', middleware.verify, notes.create);
+// Create a new leaderboard entry
+router.post('/leaderboard',/* middleware.verify,*/ leaderboard.create);
 
-// Retrieve all Notes
+// Retrieve all leaderboard data
 // NOTE: Only this one uses verify!
 //router.get('/notes', middleware.verify, notes.findAll);
-router.get('/notes', middleware.verify, notes.findAll);
-
+router.get('/leaderboard',/* middleware.verify, */ leaderboard.findAll);
+/*
 // Retrieve a single Note with noteId
-router.get('/notes/:noteId', middleware.verify, notes.findOne);
+router.get('/leaderboard/:noteId', /*middleware.verify,  leaderboard.findOne);
 
 // Update a Note with noteId
-router.put('/notes/:noteId', middleware.verify, notes.update);
+router.put('/leaderboard/:noteId', /*middleware.verify, leaderboard.update);
 
 // Delete a Note with noteId
-router.delete('/notes/:noteId', middleware.verify, notes.delete);
-
+router.delete('/leaderboard/:noteId', /*middleware.verify, leaderboard.delete);
+*/
 module.exports = router;

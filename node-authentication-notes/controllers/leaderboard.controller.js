@@ -1,4 +1,4 @@
-const Lboard = require('../models/note.model.js');
+const Lboard = require('../models/leaderboard.revised.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const lboard = new Lboard({
         teamname: req.body.title || "Untitled team name",
         _found: req.body.content,
-        published: req.body.published ? req.body.published :false,
+        // published: req.body.published ? req.body.published :false,
         timestamp: req.user
     });
 
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all notes from the database.
-/*exports.findAll = (req, res) => {
+exports.findAll = (req, res) => {
     Lboard.find()
         .then(lboard => {
             res.send(lboard);
@@ -39,18 +39,18 @@ exports.create = (req, res) => {
             });
         });
 };
-*/
 
-exports.findAllPublished =(req,res)=> {
-    Lboard.find({published:true})
-    .then(data =>{
-        res.send(data);
-    })
-    .catch(eer =>{
-        res.status(500).send({
-            message: err.message || "Could not retrieve all published Admins"
+
+exports.findAllPublished = (req, res) => { //this needs work to pull teamname and _found
+    Lboard.find({ published: true }) //need to see all teams and length of array for each team
+        .then(data => {
+            res.send(data);
+        })
+        .catch(eer => {
+            res.status(500).send({
+                message: err.message || "Could not retrieve all published Admins"
+            });
         });
-    });
 };
 
 // Update a note identified by the noteId in the request
