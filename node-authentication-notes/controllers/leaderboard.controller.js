@@ -1,24 +1,24 @@
-const Lboard = require('../models/leaderboard.revised.js');
+const Leaderboard = require('../models/leaderboard.revised.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.content) {
+    if (!req.body._found) {
         return res.status(400).send({
-            message: "Leadboard content can not be empty"
+            message: "Leaderboard content can not be empty"
         });
     }
 
     // Create a Note
-    const lboard = new Lboard({
-        teamname: req.body.title || "Untitled team name",
-        _found: req.body.content,
+    const leaderboard = new Leaderboard({
+        teamname: req.body.teamname || "Untitled team name",
+        _found: req.body._found,
         // published: req.body.published ? req.body.published :false,
-        timestamp: req.user
+        //timestamp: req.user
     });
 
     // Save Note in the database
-    lboard.save()
+    leaderboard.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -30,9 +30,9 @@ exports.create = (req, res) => {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    Lboard.find()
-        .then(lboard => {
-            res.send(lboard);
+    Leaderboard.find()
+        .then(leaderboard => {
+            res.send(leaderboard);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving notes."
@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
 
 
 exports.findAllPublished = (req, res) => { //this needs work to pull teamname and _found
-    Lboard.find({ published: true }) //need to see all teams and length of array for each team
+    Leaderboard.find({ published: true }) //need to see all teams and length of array for each team
         .then(data => {
             res.send(data);
         })
@@ -52,7 +52,7 @@ exports.findAllPublished = (req, res) => { //this needs work to pull teamname an
             });
         });
 };
-
+/*
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
@@ -85,3 +85,4 @@ exports.update = (req, res) => {
             });
         });
 };
+*/
