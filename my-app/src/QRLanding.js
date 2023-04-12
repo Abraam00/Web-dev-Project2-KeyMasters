@@ -35,15 +35,15 @@ function QRLanding() {
         <button className="landingEnterButton" onClick={handleSubmit}>
           Enter
         </button>
+        <button
+          className="leaderboardButton"
+          onClick={() => setShowLeaderboard(true)}
+        >
+          Show Leaderboard
+        </button>
+        {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
       </div>
       <img className="landingImage" src={cube} alt="cube qr code" />
-      <button
-        className="leaderboardButton"
-        onClick={() => setShowLeaderboard(true)}
-      >
-        Show Leaderboard
-      </button>
-      {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
     </div>
   );
 }
