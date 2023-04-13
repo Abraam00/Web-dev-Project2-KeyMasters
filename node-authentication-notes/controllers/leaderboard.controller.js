@@ -1,4 +1,5 @@
 const Leaderboard = require('../models/leaderboard.revised.js');
+//const qrmodelRevised = require('../models/qrmodel.revised.js');
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
@@ -8,11 +9,12 @@ exports.create = (req, res) => {
             message: "Leaderboard content can not be empty"
         });
     }
-    // if ((teamname = req.body.teamname) && (_found = req.body._found)) {
-    //     return res.status(400).send({
-    //         message: "Clue already found"
-    //     });
-    // }
+    // *** need to validate the QR code against the qr collection here *** 
+    // *** then need to validate QR and teamname against teamname array in leaderboard collection ***
+    // if QR not valid, dump back to leaderboard.
+    // if QR valid but teamname doesn't exist, leaderboard.create
+    // if QR valid but teamname array already contains, then dump back to leaderboard.
+    // if QR valid and teamname array does not contain the URL, then leaderboard.update
 
     // Create a Note
     const leaderboard = new Leaderboard({

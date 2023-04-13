@@ -3,18 +3,18 @@ const router = express.Router();
 //const Leaderboard = require('../../models/leaderboard.revised.js')
 // NOTE: Add middleware to verify requests!
 //const middleware = require('../middlewares');
-
+const qr = require('../controllers/qrcontroller.revised')
 const leaderboard = require('../controllers/leaderboard.controller.js');
 
 // Create a new leaderboard entry
 router.post('/leaderboard',/* middleware.verify,*/ leaderboard.create); //preserve this
 
 /*
-//alternate format
+//alternate format doesn't quite work but modeled on the logic used in old auth.js for avoiding duplicates
 router.post('/leaderboard', (req, res) => {
     Leaderboard.findAll({ teamname: req.body.teamname } && { _found: req.body._found })
         .then(leaderboard => {
-            if (leaderboard) res.status(404).json({ error: 'clue already found' })//checks for existing clue
+            if (!leaderboard) res.status(404).json({ error: 'clue already found' })//checks for existing clue
             else {
                 leaderboard.update
                 //const newUser = User({ teamname: req.body.teamname, password: hash })
