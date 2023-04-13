@@ -5,7 +5,7 @@ const app = express();
 // const morgan = require('morgan');
 // const authRoute = require('./routes/auth');
 // const adminRoute = require('./routes/adminauth.js');
-const leaderboardRoute = require('./routes/leaderboard.revised.route.js');
+const leaderboardRoute = require('./routes/leaderboard.revised.route');
 
 const dbURI = "mongodb://127.0.0.1/pies";
 app.use(express.json());

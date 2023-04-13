@@ -8,6 +8,11 @@ exports.create = (req, res) => {
             message: "Leaderboard content can not be empty"
         });
     }
+    // if ((teamname = req.body.teamname) && (_found = req.body._found)) {
+    //     return res.status(400).send({
+    //         message: "Clue already found"
+    //     });
+    // }
 
     // Create a Note
     const leaderboard = new Leaderboard({
@@ -48,41 +53,45 @@ exports.findAllPublished = (req, res) => { //this needs work to pull teamname an
         })
         .catch(eer => {
             res.status(500).send({
-                message: err.message || "Could not retrieve all published Admins"
+                message: err.message || "Could not retrieve all published finds"
             });
         });
 };
-/*
+
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if (!req.body.content) {
+    if (!req.body._found) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "url must be provided"
+        });
+    }
+    if ((teamname = req.body.teamname) && (_found = req.body._found)) {
+        return res.status(400).send({
+            message: "Clue already found"
         });
     }
 
     // Find note and update it with the request body
-    Lboard.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled Note",
-        content: req.body.content
+    Leaderboard.findByIdAndUpdate(req.params.leaderboardId, {
+        teamname: req.body.teamname || "Untitled Note",
+        _found: req.body._found
     }, { new: true })
-        .then(lboard => {
-            if (!lboard) {
+        .then(leaderboard => {
+            if (!leaderboard) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.L_id
+                    message: "Entry not found with id " + req.params.Leaderboard_id
                 });
             }
-            res.send(lboard);
+            res.send(leaderboard);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.L_id
+                    message: "Entry not found with id " + req.params.Leaderboard_id
                 });
             }
             return res.status(500).send({
-                message: "Error updating note with id " + req.params.L_id
+                message: "Error updating record with id " + req.params.Leaderboard_id
             });
         });
 };
-*/
