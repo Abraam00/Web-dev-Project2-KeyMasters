@@ -8,7 +8,7 @@ const leaderboard = require('../controllers/leaderboard.controller.js');
 
 // Create a new leaderboard entry
 router.post('/leaderboard',/* middleware.verify,*/ leaderboard.create); //preserve this
-
+//router.post('/leaderboard',/* middleware.verify,*/ leaderboard.update); //alternate attempt
 /*
 //alternate format doesn't quite work but modeled on the logic used in old auth.js for avoiding duplicates
 router.post('/leaderboard', (req, res) => {
@@ -41,7 +41,7 @@ router.get('/leaderboard',/* middleware.verify, */ leaderboard.findAll);
 //router.get('/leaderboard/:leaderboardId', /*middleware.verify,*/  leaderboard.findOne);
 
 // Update a Note with noteId
-router.put('/leaderboard/:leaderboardId', /*middleware.verify,*/ leaderboard.update);
+router.put('/leaderboard/:leaderboardteamname', /*middleware.verify,*/ leaderboard.update);
 
 // Delete a Note with noteId
 //router.delete('/leaderboard/:leaderboardId', /*middleware.verify,*/ leaderboard.delete);
