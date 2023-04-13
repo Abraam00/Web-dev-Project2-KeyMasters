@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-//const Leaderboard = require('../../models/leaderboard.revised')
+//const Leaderboard = require('../../models/leaderboard.revised.js')
 // NOTE: Add middleware to verify requests!
 //const middleware = require('../middlewares');
 

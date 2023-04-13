@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "5968dd23fc13ae04d9000001"
+  },
+  "url": "https://sshqr.com/randomsequence1",
+  "description": "the first clue"
+}, {
+  "_id": {
+    "$oid": "5968dd23fc13ae04d9000002"
+  },
+  "url": "https://sshqr.com/randomsequence2",
+  "description": "the second clue"
+}, {
+  "_id": {
+    "$oid": "5968dd23fc13ae04d9000003"
+  },
+  "url": "https://sshqr.com/randomsequence3",
+  "description": "the third clue"
+}]
