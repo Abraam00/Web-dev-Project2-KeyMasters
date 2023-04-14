@@ -1,22 +1,37 @@
 const Leaderboard = require('../models/leaderboard.revised.js');
+const client = "mongodb://127.0.0.1/pies";
 //const qrmodelRevised = require('../models/qrmodel.revised.js');
 
-// Create and Save a new Qr code id
+// Create and Save a new _found qr code:
+
+/*
 exports.update = (req, res) => { //trying to set up alternate method
     if (!req.body._found) {
         return res.status(400).send({
             message: "Leaderboard content can not be empty"
         });
     }
+    // const database = db("pies");
+    // const coll = database.collection("leaderboard");
+    // const leaderboard = new Leaderboard({  //this constructor shouldn't be needed
+    //     teamname: req.body.teamname || "Untitled team name",
+    //     _found: req.body._found,
+    //     // published: req.body.published ? req.body.published :false,
+    //     //timestamp: req.user
+    // });
 
-
-    const query = { teamname: req.body.teamname };
-    console.log(query);
-    const update = { $push: { teamname: req.body.teamname, _found: [req.body._found] } };
+    const filter = { teamname: req.body.teamname };
+    console.log(filter);
+    const update = { $push: { teamname: req.body.teamname, _found: [req.body._found] }, };
     console.log(update);
+    //const options = {};
     const options = { upsert: true };
-    Leaderboard.updateOne(query, update, options);
+    //coll.updateOne(filter, update, options);
+    const result = Leaderboard.updateOne(filter, update, options); //can't get this to update
+    console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,);
 }
+*/
+
 
 
 exports.create = (req, res) => {

@@ -29,7 +29,6 @@ exports.create = (req, res) => {
 //I'm not sure we need the rest of this code.  Need to establish how this can loop to read the entire JSON
 //of all the QR urls and descriptions.  Is there a batch function? I haven't researched it myself.
 
-/*
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
     QR.find()
@@ -42,9 +41,9 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single note with a noteId
+// Find a single note with a qrurl 
 exports.findOne = (req, res) => {
-    QR.findById(req.params.qrid)
+    QR.findByUrl(req.params.qrurl)
         .then(qr => {
             if (!qr) {
                 return res.status(404).send({
@@ -69,7 +68,7 @@ exports.findOne = (req, res) => {
             });
         });
 };
-
+/*
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request

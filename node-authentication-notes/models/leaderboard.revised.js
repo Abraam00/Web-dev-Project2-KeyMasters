@@ -7,7 +7,7 @@ const LeaderboardSchema = mongoose.Schema({
         required: true
     },
     _found: { //array with _id of all QR codes found and the length of the array as total found
-        type: String,
+        type: Array,
         required: true
     }/*,
     timestamps: { //reads the timestamp of most recent found QR code but probably not needed
