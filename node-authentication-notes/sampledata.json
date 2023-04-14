@@ -1,7 +1,7 @@
 [{
   "_id": {
     "$oid": "5968dd23fc13ae04d9000001"
-  },
+ },
   "url": "https://sshqr.com/randomsequence1",
   "description": "the first clue"
 }, {
@@ -16,4 +16,22 @@
   },
   "url": "https://sshqr.com/randomsequence3",
   "description": "the third clue"
+  }, {
+   "_id": {
+  "$oid": "5968dd23fc13ae04d9000004"
+  },
+  "url": "https://sshqr.com/randomsequence4",
+  "description": "the fourth clue"
+  }, {
+  "_id": {
+  "$oid": "5968dd23fc13ae04d9000005"
+  },
+  "url": "https://sshqr.com/randomsequence5",
+  "description": "the fifth clue"
+  }, {
+  "_id": {
+  "$oid": "5968dd23fc13ae04d9000006"
+  },
+  "url": "https://sshqr.com/randomsequence6",
+  "description": "the sixth clue"
 }]

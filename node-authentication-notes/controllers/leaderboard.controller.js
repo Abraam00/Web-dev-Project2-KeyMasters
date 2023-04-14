@@ -1,36 +1,42 @@
 const Leaderboard = require('../models/leaderboard.revised.js');
-const client = "mongodb://127.0.0.1/pies";
+
 //const qrmodelRevised = require('../models/qrmodel.revised.js');
 
 // Create and Save a new _found qr code:
 
-/*
+
 exports.update = (req, res) => { //trying to set up alternate method
     if (!req.body._found) {
         return res.status(400).send({
             message: "Leaderboard content can not be empty"
         });
     }
-    // const database = db("pies");
-    // const coll = database.collection("leaderboard");
-    // const leaderboard = new Leaderboard({  //this constructor shouldn't be needed
-    //     teamname: req.body.teamname || "Untitled team name",
-    //     _found: req.body._found,
-    //     // published: req.body.published ? req.body.published :false,
-    //     //timestamp: req.user
-    // });
+    var MongoClient = require('mongodb').MongoClient;
+    const client = "mongodb://127.0.0.1/pies";
+    MongoClient.connect(client, function (err, db) {
+        if (err) throw err;
 
-    const filter = { teamname: req.body.teamname };
-    console.log(filter);
-    const update = { $push: { teamname: req.body.teamname, _found: [req.body._found] }, };
-    console.log(update);
-    //const options = {};
-    const options = { upsert: true };
-    //coll.updateOne(filter, update, options);
-    const result = Leaderboard.updateOne(filter, update, options); //can't get this to update
-    console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,);
+
+
+        const database = db.db("pies");
+        const coll = database.collection("leaderboards");
+
+        const filter = { teamname: req.body.teamname };
+        console.log(filter);
+        const update = { $push: { teamname: req.body.teamname, _found: [req.body._found] }, };
+        console.log(update);
+        //const options = {};
+        const options = { upsert: true };
+        //coll.updateOne(filter, update, options);
+        const result = coll.updateOne(filter, update, options, function (err, res) {
+            if (err) throw err;
+            console.log("1 document updated");
+        }); //can't get this to update
+        console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,);
+    });
+
 }
-*/
+
 
 
 
