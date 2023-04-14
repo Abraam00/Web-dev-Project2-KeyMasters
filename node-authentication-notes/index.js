@@ -13,7 +13,7 @@ app.use(express.json());
 // app.use(morgan('dev'));
 // app.use(cors());
 // app.use('/api/auth', authRoute);
-app.use('/api/qr', qrRoute);
+app.use('/api', qrRoute);
 app.use('/api', leaderboardRoute);
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
