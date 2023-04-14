@@ -9,3 +9,6 @@ mongoimport -d=pies -c=qrs --mode merge --jsonArray --file=sampledata.json --hos
 # --uri=<connectionString>
 # --config=<filename> 
 # --awsSessionToken=<AWS Session Token>
+
+#helpful details on these options can be found here: https://www.mongodb.com/docs/database-tools/mongoimport/
+
