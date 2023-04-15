@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const lead = express();
+const fs = require('fs');
 //const Leaderboard = require('../../models/leaderboard.revised.js')
 // NOTE: Add middleware to verify requests!
 //const middleware = require('../middlewares');
@@ -11,11 +13,12 @@ router.post('/leaderboard', leaderboard.create); //preserve this
 //router.post('/leaderboard', leaderboard.update); //alternate attempt
 
 
-
 // Retrieve all leaderboard data
 // NOTE: Only this one uses verify!
 //router.get('/notes', middleware.verify, notes.findAll);
 router.get('/leaderboard', leaderboard.findAll);
+
+
 
 // Retrieve a single Note with noteId
 //router.get('/leaderboard/:leaderboardId', leaderboard.findOne);
@@ -25,5 +28,10 @@ router.get('/leaderboard', leaderboard.findAll);
 
 // Delete a Note with noteId
 //router.delete('/leaderboard/:leaderboardId',leaderboard.delete);
-
+//define a route to reteive the items from database
+// Read items from the Json File
+const L_board = JSON.parse(fs.readFileSync('sampledata.json'));
+lead.get('/leadboard',(req,res)=>{
+   res.json(leadboard);
+});
 module.exports = router;
