@@ -146,7 +146,7 @@ exports.update = async (req, res) => {
 };
 
 exports.tofront = async (req, res) => {
-    const size = await leaderboard.aggregate([
+    const size = await Leaderboard.aggregate([
         {
             $project: {
                 _id: 0,
@@ -158,6 +158,7 @@ exports.tofront = async (req, res) => {
                         else: "0",
                     },
                 },
+                updatedAt: 1,
             },
         },
     ]);

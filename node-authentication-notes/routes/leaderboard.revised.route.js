@@ -16,7 +16,7 @@ router.put('/leaderboard', leaderboard.update); //alternate attempt
 // Retrieve all leaderboard data
 // NOTE: Only this one uses verify!
 //router.get('/notes', middleware.verify, notes.findAll);
-router.get('/leaderboard', leaderboard.findAll);
+router.get('/leaderboard', leaderboard.tofront);
 
 
 
@@ -31,7 +31,7 @@ router.get('/leaderboard', leaderboard.findAll);
 //define a route to reteive the items from database
 // Read items from the Json File
 const L_board = JSON.parse(fs.readFileSync('sampledata.json'));
-lead.get('/leadboard', (req, res) => {
-   res.json(L_board);
+lead.get('/leaderboard', (req, res) => {
+   res.json(leaderboard);
 });
 module.exports = router;
