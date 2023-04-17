@@ -36,16 +36,18 @@ function QRLanding() {
           value={teamName}
           onChange={handleInputChange}
         />
-        <button className="landingEnterButton" onClick={handleSubmit}>
-          Enter
-        </button>
-        <button
-          className="leaderboardButton"
-          onClick={() => setShowLeaderboard(true)}
-        >
-          Show Leaderboard
-        </button>
-        {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
+        <div className="buttonContainer">
+          <button className="landingEnterButton" onClick={handleSubmit}>
+            Enter
+          </button>
+          <button
+            className="leaderboardButton"
+            onClick={() => setShowLeaderboard(true)}
+          >
+            Show Leaderboard
+          </button>
+          {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
+        </div>
       </div>
     </div>
   );
