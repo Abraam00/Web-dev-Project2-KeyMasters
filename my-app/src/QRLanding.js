@@ -24,6 +24,7 @@ function QRLanding() {
 
   return (
     <div className="landingFormGroup">
+      <img className="landingImage" src={cube} alt="cube qr code" />
       <div className="landingGridQR">
         <label className="landingFormLabel">Description</label>
         <textarea className="form-control" rows="5" disabled="true"></textarea>
@@ -35,18 +36,19 @@ function QRLanding() {
           value={teamName}
           onChange={handleInputChange}
         />
-        <button className="landingEnterButton" onClick={handleSubmit}>
-          Enter
-        </button>
-        <button
-          className="leaderboardButton"
-          onClick={() => setShowLeaderboard(true)}
-        >
-          Show Leaderboard
-        </button>
-        {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
+        <div className="buttonContainer">
+          <button className="landingEnterButton" onClick={handleSubmit}>
+            Enter
+          </button>
+          <button
+            className="leaderboardButton"
+            onClick={() => setShowLeaderboard(true)}
+          >
+            Show Leaderboard
+          </button>
+          {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
+        </div>
       </div>
-      <img className="landingImage" src={cube} alt="cube qr code" />
     </div>
   );
 }

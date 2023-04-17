@@ -1,101 +1,124 @@
 .landingFormGroup{
-    display: grid;
-    grid-template-columns: repeat(8,1fr);
-    grid-auto-rows: auto;
-    height: 100vh;
-  }
-  .landingGridQR{
-    grid-column: 2/7;
-    padding-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  height: 100vh;
+  width: 100vh;
+}
+
+.landingImage{
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 50px;
+}
+
+.landingGridQR{
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 50px;
+  width: 75vh;
+}
+
+.landingFormLabel {
+  font-size: xx-large;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-control{
+  font-size: xx-large;
+  margin-bottom: 20px;
+}
+
+.landingEnterButton {
+  grid-row: 1;
+  grid-column: 1;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 24px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.landingEnterButton:hover {
+  background-color: #3e8e41;
+}
+
+.leaderboardButton{
+  background-color: #df7913;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 28px;
+  cursor: pointer;
+  width: 100%; 
+}
+
+.buttonContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .landingFormGroup {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(100px, auto);
+    height: auto;
+    width: auto;
   }
 
   .landingImage{
     grid-column: 1;
-    grid-row: 1/4;
-    padding-top: 50px;
-  }
-
-  .leaderboardButton{
-    /* grid-column: 2/9; */
-    background-color: #df7913;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 20%;
-  }
-
-  .landingFormLabel {
-    font-size: xx-large;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .form-control{
-    font-size: xx-large;
-    margin-bottom: 20px;
-  }
-
-  .landingEnterButton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 20%;
-  }
-
-  .landingEnterButton:hover {
-    background-color: #3e8e41;
-  }
-
-  .adminTopBanner {
-    text-align: center;
-    background-color: black;
-  }
-
-  .loginFormGroup{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-
-  .adminBody {
-    display: grid;
-    grid-template-columns: repeat(8,1fr);
-    grid-auto-rows: auto;
-  }
-  .adminFormGroup{
-    display: grid;
-    height: 100vh;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
-  }
-
-  .leaderboardContainer {
-    min-height: 100vh;
-  }
-
-  .leaderboardTableContainer {
+    grid-row: 2;
     width: 100%;
   }
 
-  .QrHintButton {
-    display: inline;
-    align-items: center;
-    margin-left: 40%;
-    background-color: #df7913;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 20%;
+  .landingGridQR{
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
   }
+}
+
+
+
+.leaderboardContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  grid-template-rows: auto 1fr
+}
+
+h1{
+  margin-top: 20px;
+}
+
+.leaderboardTableContainer {
+  width: 100%;
+  justify-self: top;
+}
+
+th, td {
+  border: 1px solid white;
+}
+
+.headingText {
+  text-align: center;
+  font-size: large;
+}
+
+.backButton {
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 28px;
+  background-color:#3e8e41 ;
+}

@@ -32,6 +32,6 @@ router.get('/leaderboard', leaderboard.findAll);
 // Read items from the Json File
 const L_board = JSON.parse(fs.readFileSync('sampledata.json'));
 lead.get('/leadboard', (req, res) => {
-   res.json(leadboard);
+   res.json(L_board);
 });
 module.exports = router;
