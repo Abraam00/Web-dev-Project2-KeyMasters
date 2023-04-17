@@ -1,7 +1,8 @@
 import "./bootstrap.min.css";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { getLeaderboardData } from "./functions/leaderboard";
 
 const Leaderboard = () => {
   const [back, setBack] = useState(false);
@@ -43,6 +44,24 @@ const Leaderboard = () => {
       score: "7",
     },
   ]);
+
+  useEffect(() => {
+    const fetchLeaderBoard = async () => {
+      try {
+        const leaderboardData = await getLeaderboardData();
+        setTopTeams(
+          leaderboardData.map((team) => ({
+            name: team.teamname,
+            score: team._found.length,
+          }))
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchLeaderBoard();
+  }, []);
 
   return (
     <>
