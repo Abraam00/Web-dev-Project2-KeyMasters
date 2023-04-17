@@ -108,7 +108,9 @@ exports.update = (req, res) => {
     Leaderboard.findByIdAndUpdate(req.params.id, {
         teamname: req.body.teamname || undefined,
         _found: req.body._found || undefined,
-    })
+    },
+    {new:true}
+    )
         .then((leaderboard) => {
             if (!leaderboard) {
                 return leaderboard.create();
