@@ -1,10 +1,10 @@
 const Leaderboard = require('../models/leaderboard.revised.js');
-
-//const qrmodelRevised = require('../models/qrmodel.revised.js');
+//const config = require("./config");
+const QR = require('../models/qrmodel.revised.js');
 
 // Create and Save a new _found qr code:
 
-
+/*
 exports.update = (req, res) => { //trying to set up alternate method
     if (!req.body._found) {
         return res.status(400).send({
@@ -37,7 +37,98 @@ exports.update = (req, res) => { //trying to set up alternate method
 
 }
 
+*/
+// this is an attempt to link all of the steps as I see it into one flow.
 
+
+//the idea of this starting point is to check front end information.
+//step 1 is to see if a url and teamname are in the body
+exports.validate = (req, res) => {
+    if (!req.body._found) {
+        return res.status(400).send({
+            message: "HEY!! Leaderboard content can not be empty"
+        });
+    }
+    if (!req.body.teamname) {
+        return res.status(400).send({
+            message: "Team name required"
+        });
+    }
+    //else { Leaderboard.update }
+    QR.findOne; //trying to pass the 
+};
+//step 2 should be to verify validity of QR code against db
+exports.findOne = (req, res) => {
+    QR.findById(req.body._found)
+        .then((qr) => {
+            if (!qr) {
+                return res.status(404).send({
+                    message: "QR not found",
+                });
+            }
+            Leaderboard.update;
+            //res.send(qr);
+        })
+        .catch((err) => {
+            return res.status(500).send({
+                message: err.message,
+            });
+        });
+};
+
+//alternate path - step 2.5 should get teamname into usable format
+exports.restrictToSelf = (role) => {
+    return (req, res, next) => {
+        // Get user id from request
+        let leaderboardId;
+        if (req.route.path === "/leaderboard/:id") {
+            leaderboardId = req.params.id;
+        } else if (req.query) {
+            leaderboardId = req.query.leaderboardId;
+        }
+
+        if (req.leaderboard._id === leaderboardId || req.user.role === role) {
+            Leaderboard.update; //next(); //update 
+        } else {
+            Leaderboard.create; //create leaderboard
+            res
+                .json({ error: "I think this worked" });
+            //.status(403)
+            // .json({ error: "you are not authorized to perform this action" });
+        }
+    };
+};
+
+
+//step 3 should update the team's array (if new team then create team)
+
+
+exports.update = (req, res) => {
+    // Find and update the leaderboard for that team
+    Leaderboard.findByIdAndUpdate(req.params.id, {
+        teamname: req.body.teamname || undefined,
+        _found: req.body._found || undefined,
+    })
+        .then((leaderboard) => {
+            if (!leaderboard) {
+                return leaderboard.create();
+                // return res.status(404).send({
+                //   message: "Team not found",
+                // });
+            }
+            res.send({ message: "Leaderboard updated successfully" });
+        })
+        .catch((err) => {
+            return res.status(500).send({
+                message: err.message,
+            });
+        });
+};
+
+//}
+
+
+//close it off here if it doesn't work
 
 
 exports.create = (req, res) => {

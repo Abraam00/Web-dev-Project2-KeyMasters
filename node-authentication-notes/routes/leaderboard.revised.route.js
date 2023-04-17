@@ -9,9 +9,9 @@ const fs = require('fs');
 const leaderboard = require('../controllers/leaderboard.controller.js');
 
 // Create a new leaderboard entry
-router.post('/leaderboard', leaderboard.create); //preserve this
+//router.post('/leaderboard', leaderboard.create); //preserve this
 //router.post('/leaderboard', leaderboard.update); //alternate attempt
-
+router.post('/leaderboard', leaderboard.validate); //alternate attempt
 
 // Retrieve all leaderboard data
 // NOTE: Only this one uses verify!
@@ -31,7 +31,7 @@ router.get('/leaderboard', leaderboard.findAll);
 //define a route to reteive the items from database
 // Read items from the Json File
 const L_board = JSON.parse(fs.readFileSync('sampledata.json'));
-lead.get('/leadboard',(req,res)=>{
+lead.get('/leadboard', (req, res) => {
    res.json(leadboard);
 });
 module.exports = router;

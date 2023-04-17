@@ -9,6 +9,9 @@ function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const [teamExists, setTeamExists] = useState(false);
+  /* it seems to me that we need a variable to capture the url of the scanned QR code to credit
+   the team with finding it. This should probably be reflected in the handlers below (if teamname entered
+    then capture the current URL so it can be checked against the db */
 
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
