@@ -104,8 +104,36 @@ exports.restrictToSelf = (role) => {
 //step 3 should update the team's array (if new team then create team)
 
 */
-//exports.update = (req, res) => {
-// exports.post("/leaderboard", async (req, res) => {
+
+// exports.validate = async (req, res) => {
+//     const valid = await QR.findOne(
+//         { url: req.body._found },
+//     )
+//     res.send({ valid });
+// }
+
+
+// exports.update = async (req, res) => { //alternate idea trying to validate URL
+//     // Find and update the leaderboard for that team
+//     //const valid = true;
+//     const valid = await QR.findOne(
+//         { url: req.body._found },
+//     )
+//     //return valid;
+//     if (valid === true) { //maybe not this?
+//         await Leaderboard.updateOne(
+//             { teamname: req.body.teamname },
+//             { $addToSet: { _found: { $each: [req.body._found] } } }
+//         );
+//         console.log("updated");
+//         res.send({ message: "Leaderboard updated successfully" });
+//     }
+//     else {
+//         res.send({ message: "invalid code" });
+//     }//maybe not this?
+// };
+
+
 exports.update = async (req, res) => {
     // Find and update the leaderboard for that team
     await Leaderboard.updateOne(
@@ -116,6 +144,7 @@ exports.update = async (req, res) => {
     res.send({ message: "Leaderboard updated successfully" });
 
 };
+
 exports.tofront = async (req, res) => {
     const size = await leaderboard.aggregate([
         {
