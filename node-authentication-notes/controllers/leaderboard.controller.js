@@ -105,6 +105,7 @@ exports.restrictToSelf = (role) => {
 
 */
 
+/*
 // exports.validate = async (req, res) => {
 //     const valid = await QR.findOne(
 //         { url: req.body._found },
@@ -116,6 +117,7 @@ exports.restrictToSelf = (role) => {
 // exports.update = async (req, res) => { //alternate idea trying to validate URL
 //     // Find and update the leaderboard for that team
 //     //const valid = true;
+//      console.log(req.body._found);
 //     const valid = await QR.findOne(
 //         { url: req.body._found },
 //     )
@@ -132,7 +134,7 @@ exports.restrictToSelf = (role) => {
 //         res.send({ message: "invalid code" });
 //     }//maybe not this?
 // };
-
+*/
 
 exports.update = async (req, res) => {
     // Find and update the leaderboard for that team
@@ -165,34 +167,11 @@ exports.tofront = async (req, res) => {
     size.sort((a, b) => Number(b.numberOfQrs) - Number(a.numberOfQRs));
     console.log(size);
     res.send(size);
-}; //add timestamp to this as well!!
-
-
-/*
-},
-    { new: true }
-)
-    .then((leaderboard) => {  //update leaderboard if team is found
-        if (!leaderboard) {
-            //     return leaderboard.create(req.body);  //if the team isn't in leaderboard, then create
-            //     // return res.status(404).send({
-            //     //   message: "Team not found",
-            //     // });
-        }
-        res.send({ message: "Leaderboard updated successfully" });
-    })
-    .catch((err) => {
-        return res.status(500).send({
-            message: err.message,
-        });
-    });
-};
+}; //now lists last updatedAt value for that team
 
 
 
 
-//close it off here if it doesn't work
-*/
 exports.create = (req, res) => {
     // Validate request
     if (!req.body._found) {
