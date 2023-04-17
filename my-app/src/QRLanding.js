@@ -21,6 +21,7 @@ function QRLanding() {
 
   return (
     <div className="landingFormGroup">
+      <img className="landingImage" src={cube} alt="cube qr code" />
       <div className="landingGridQR">
         <label className="landingFormLabel">Description</label>
         <textarea className="form-control" rows="5" disabled="true"></textarea>
@@ -43,7 +44,6 @@ function QRLanding() {
         </button>
         {showLeaderboard && <Navigate to="/leaderboard" replace={true} />}
       </div>
-      <img className="landingImage" src={cube} alt="cube qr code" />
     </div>
   );
 }
