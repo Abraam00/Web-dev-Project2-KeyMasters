@@ -133,6 +133,7 @@ exports.tofront = async (req, res) => {
         },
     ]);
     size.sort((a, b) => Number(b.numberOfQrs) - Number(a.numberOfQRs));
+    console.log(size);
     res.send(size);
 }; //add timestamp to this as well!!
 
