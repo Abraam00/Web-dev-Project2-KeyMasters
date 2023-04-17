@@ -16,8 +16,8 @@ export function getAllNotes(token) {
 */
 
 // Get notes of a user
-export function getRecordsOfUser(teamName) {
-  return axios(`${config.API.BASE_URL}/notes/teamname`, {
+export function getRecordsOfUser(teamName) { //should this be leaderboardId?
+  return axios(`${config.API.BASE_URL}/leaderboard/teamname`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

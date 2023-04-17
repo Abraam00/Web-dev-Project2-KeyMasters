@@ -9,9 +9,9 @@ const fs = require('fs');
 const leaderboard = require('../controllers/leaderboard.controller.js');
 
 // Create a new leaderboard entry
-//router.post('/leaderboard', leaderboard.create); //preserve this
-//router.post('/leaderboard', leaderboard.update); //alternate attempt
-router.post('/leaderboard', leaderboard.validate); //alternate attempt
+router.post('/leaderboard', leaderboard.create); //preserve this
+router.put('/leaderboard', leaderboard.update); //alternate attempt
+//router.post('/leaderboard', leaderboard.validate); //alternate attempt
 
 // Retrieve all leaderboard data
 // NOTE: Only this one uses verify!

@@ -1,6 +1,7 @@
+const { application } = require('express');
 const Leaderboard = require('../models/leaderboard.revised.js');
 //const config = require("./config");
-const QR = require('../models/qrmodel.revised.js');
+const QR = require('../models/qrmodel.revised.js');  //added to try having a unified controller
 
 // Create and Save a new _found qr code:
 
@@ -38,8 +39,8 @@ exports.update = (req, res) => { //trying to set up alternate method
 }
 
 */
-// this is an attempt to link all of the steps as I see it into one flow.
-
+// this is my latest attempt to link all of the steps as I see it into one flow, but there are problems
+/*
 
 //the idea of this starting point is to check front end information.
 //step 1 is to see if a url and teamname are in the body
@@ -55,7 +56,7 @@ exports.validate = (req, res) => {
         });
     }
     //else { Leaderboard.update }
-    QR.findOne; //trying to pass the 
+    QR.findOne; //trying to pass the qr url to the db to check it (see step 2 below)
 };
 //step 2 should be to verify validity of QR code against db
 exports.findOne = (req, res) => {
@@ -66,7 +67,7 @@ exports.findOne = (req, res) => {
                     message: "QR not found",
                 });
             }
-            Leaderboard.update;
+            Leaderboard.update;  //if qr is valid, then go run the update (see step 3 below)
             //res.send(qr);
         })
         .catch((err) => {
@@ -76,7 +77,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-//alternate path - step 2.5 should get teamname into usable format
+//alternate path - step 2.5 trying get teamname into usable format but it doesn't work
 exports.restrictToSelf = (role) => {
     return (req, res, next) => {
         // Get user id from request
@@ -102,35 +103,65 @@ exports.restrictToSelf = (role) => {
 
 //step 3 should update the team's array (if new team then create team)
 
-
-exports.update = (req, res) => {
+*/
+//exports.update = (req, res) => {
+// exports.post("/leaderboard", async (req, res) => {
+exports.update = async (req, res) => {
     // Find and update the leaderboard for that team
-    Leaderboard.findByIdAndUpdate(req.params.id, {
-        teamname: req.body.teamname || undefined,
-        _found: req.body._found || undefined,
+    await Leaderboard.updateOne(
+        { teamname: req.body.teamname },
+        { $addToSet: { _found: { $each: [req.body._found] } } }
+    );
+    console.log("updated");
+    res.send({ message: "Leaderboard updated successfully" });
+
+};
+exports.tofront = async (req, res) => {
+    const size = await leaderboard.aggregate([
+        {
+            $project: {
+                _id: 0,
+                teamname: 1,
+                numberOfQRs: {
+                    $cond: {
+                        if: { $isArray: "$_found" },
+                        then: { $size: "$_found" },
+                        else: "0",
+                    },
+                },
+            },
+        },
+    ]);
+    size.sort((a, b) => Number(b.numberOfQrs) - Number(a.numberOfQRs));
+    res.send(size);
+}; //add timestamp to this as well!!
+
+
+/*
+},
+    { new: true }
+)
+    .then((leaderboard) => {  //update leaderboard if team is found
+        if (!leaderboard) {
+            //     return leaderboard.create(req.body);  //if the team isn't in leaderboard, then create
+            //     // return res.status(404).send({
+            //     //   message: "Team not found",
+            //     // });
+        }
+        res.send({ message: "Leaderboard updated successfully" });
     })
-        .then((leaderboard) => {
-            if (!leaderboard) {
-                return leaderboard.create();
-                // return res.status(404).send({
-                //   message: "Team not found",
-                // });
-            }
-            res.send({ message: "Leaderboard updated successfully" });
-        })
-        .catch((err) => {
-            return res.status(500).send({
-                message: err.message,
-            });
+    .catch((err) => {
+        return res.status(500).send({
+            message: err.message,
         });
+    });
 };
 
-//}
+
 
 
 //close it off here if it doesn't work
-
-
+*/
 exports.create = (req, res) => {
     // Validate request
     if (!req.body._found) {
