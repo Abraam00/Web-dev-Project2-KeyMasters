@@ -105,7 +105,8 @@ exports.restrictToSelf = (role) => {
 
 exports.update = (req, res) => {
     // Find and update the leaderboard for that team
-    Leaderboard.findByIdAndUpdate(req.params.id, {
+    Leaderboard.findByIdAndUpdate(req.params.id, 
+        {
         teamname: req.body.teamname || undefined,
         _found: req.body._found || undefined,
     },
@@ -113,7 +114,7 @@ exports.update = (req, res) => {
     )
         .then((leaderboard) => {
             if (!leaderboard) {
-                return leaderboard.create();
+                return leaderboard.create(req.body);
                 // return res.status(404).send({
                 //   message: "Team not found",
                 // });
