@@ -9,38 +9,47 @@ const Leaderboard = () => {
     {
       name: "Dr. Plante",
       score: "9",
+      time: "12:00 PM",
     },
     {
       name: "Waleed",
       score: "8",
+      time: "12:00 PM",
     },
     {
       name: "Abraam",
       score: "7",
+      time: "12:00 PM",
     },
     {
       name: "Dr. Plante",
       score: "9",
+      time: "12:00 PM",
     },
     {
       name: "Waleed",
       score: "8",
+      time: "12:00 PM",
     },
     {
       name: "Abraam",
       score: "7",
+      time: "12:00 PM",
     },
     {
       name: "Dr. Plante",
       score: "9",
+      time: "12:00 PM",
     },
     {
       name: "Waleed",
       score: "8",
+      time: "12:00 PM",
     },
     {
       name: "Abraam",
       score: "7",
+      time: "12:00 PM",
     },
   ]);
 
@@ -61,6 +70,9 @@ const Leaderboard = () => {
                 <th className="headingText" scope="col">
                   QRs found
                 </th>
+                <th className="headingText" scope="col">
+                  Last Found
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -73,6 +85,7 @@ const Leaderboard = () => {
                   >
                     <th>{team.name}</th>
                     <td>{team.score}</td>
+                    <td>{team.time}</td>
                   </tr>
                 );
               })}
