@@ -28,7 +28,7 @@ function QRLanding() {
       <img className="landingImage" src={cube} alt="cube qr code" />
       <div className="landingGridQR">
         <label className="landingFormLabel">Description</label>
-        <textarea className="form-control" rows="5" disabled="true"></textarea>
+        <textarea className="form-control" rows="5" disabled={true}></textarea>
         <label className="landingFormLabel">Enter team name:</label>
         <input
           className="form-control"

@@ -13,6 +13,8 @@ const Leaderboard = () => {
     showLeaderboard().then((res) => setTopTeams(res.data)).catch((err) => console.log(err))
   })
 
+  console.log(topTeams)
+
   return (
     <>
       {back && <Navigate to="/" replace={true} />}
