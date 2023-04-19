@@ -6,56 +6,11 @@ import { showLeaderboard } from "./functions/leaderboardFunctions";
 
 const Leaderboard = () => {
   const [back, setBack] = useState(false);
-  const [topTeams, setTopTeams] = useState([
-    {
-      name: "Dr. Plante",
-      score: "9",
-      time: "12:00 PM",
-    },
-    {
-      name: "Waleed",
-      score: "8",
-      time: "12:00 PM",
-    },
-    {
-      name: "Abraam",
-      score: "7",
-      time: "12:00 PM",
-    },
-    {
-      name: "Dr. Plante",
-      score: "9",
-      time: "12:00 PM",
-    },
-    {
-      name: "Waleed",
-      score: "8",
-      time: "12:00 PM",
-    },
-    {
-      name: "Abraam",
-      score: "7",
-      time: "12:00 PM",
-    },
-    {
-      name: "Dr. Plante",
-      score: "9",
-      time: "12:00 PM",
-    },
-    {
-      name: "Waleed",
-      score: "8",
-      time: "12:00 PM",
-    },
-    {
-      name: "Abraam",
-      score: "7",
-      time: "12:00 PM",
-    },
-  ]);
-
+  const [topTeams, setTopTeams] = useState([]);
   useEffect(() => {
-    setTopTeams(showLeaderboard());
+    showLeaderboard()
+      .then((res) => setTopTeams(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
