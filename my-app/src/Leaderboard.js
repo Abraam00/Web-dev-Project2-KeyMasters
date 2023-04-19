@@ -11,7 +11,7 @@ const Leaderboard = () => {
 
   useEffect(() => {
     showLeaderboard().then((res) => setTopTeams(res.data)).catch((err) => console.log(err))
-  })
+  }, [])
 
   console.log(topTeams)
 
