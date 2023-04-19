@@ -2,13 +2,12 @@ import "./bootstrap.min.css";
 import "./App.css";
 import cube from "./images/cube.png";
 import React, { useState } from "react";
-import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { createTeam, updateTeam } from "./functions/leaderboardFunctions";
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
-  const [teamExists, setTeamExists] = useState(false);
   /* it seems to me that we need a variable to capture the url of the scanned QR code to credit
    the team with finding it. This should probably be reflected in the handlers below (if teamname entered
     then capture the current URL so it can be checked against the db */
@@ -18,14 +17,10 @@ function QRLanding() {
   };
 
   const handleSubmit = (event) => {
-    // useEffect(() => {
-    //   axios
-    //     .post("route")
-    //     .then((res) => ))
-    //     .catch((err) => console.log(err));
-    // }, []);
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
+    createTeam(`${teamName}`);
+    updateTeam(`${teamName}`, "url to be retrieved");
   };
 
   return (
