@@ -2,6 +2,6 @@
 */
 module.exports = {
   API: {
-    BASE_URL: "http://127.0.0.1:3000/api",
+    BASE_URL: "http://127.0.0.1:2400/api",
   },
 };
