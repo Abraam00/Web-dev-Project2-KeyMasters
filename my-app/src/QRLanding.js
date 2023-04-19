@@ -18,6 +18,12 @@ function QRLanding() {
   };
 
   const handleSubmit = (event) => {
+    // useEffect(() => {
+    //   axios
+    //     .post("route")
+    //     .then((res) => ))
+    //     .catch((err) => console.log(err));
+    // }, []);
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
   };

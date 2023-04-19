@@ -2,6 +2,7 @@ import "./bootstrap.min.css";
 import "./App.css";
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { showLeaderboard } from "./functions/leaderboardFunctions";
 
 const Leaderboard = () => {
   const [back, setBack] = useState(false);
@@ -53,6 +54,10 @@ const Leaderboard = () => {
     },
   ]);
 
+  useEffect(() => {
+    setTopTeams(showLeaderboard());
+  }, []);
+
   return (
     <>
       {back && <Navigate to="/" replace={true} />}
@@ -83,9 +88,9 @@ const Leaderboard = () => {
                       index % 2 === 0 ? "table-primary" : "table-secondary"
                     }
                   >
-                    <th>{team.name}</th>
-                    <td>{team.score}</td>
-                    <td>{team.time}</td>
+                    <th>{team.teamname}</th>
+                    <td>{team.numberOfQRs}</td>
+                    <td>{team.updatedAt}</td>
                   </tr>
                 );
               })}
