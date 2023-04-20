@@ -20,25 +20,21 @@ function QRLanding() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
-    const url = "https://sshqr.com/randomsequence25";
-    // try {
-    //   validateQR(url);
-    // } catch (error) { };
-
-
-
-
+    const url = "https://sshqr.com/randomsequence23";
 
     try {
-      createTeam(teamName, url);
-      //updateTeam(teamName); //it seems that trying updateTeam first and if 404 then createTeam
+      //need if statement here to say if updateTeam() is successful, then return to leaderboard else run createTeam()
+      //this currently works if it is a new team...they get added with url hardcoded above.  BUT if existing team, then
+      //the existing entry is updated AND a new entry is created.
+      //createTeam(teamName, url);
+      updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
       //would be a more streamlined approach requiring a single handler.
 
     } catch (error) { /*createTeam(teamName) */ };
 
-    // createTeam(teamName);
+    createTeam(teamName, url);
 
-    //updateTeam(`${teamName}`, "need to get a url into this"); //this will not duplicate entry with hardcoded string
+    //updateTeam(`${teamName}`, url); //this will not duplicate entry with hardcoded string
   };
 
   return (

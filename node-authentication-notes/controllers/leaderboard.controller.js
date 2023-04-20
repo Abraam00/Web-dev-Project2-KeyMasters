@@ -185,7 +185,7 @@ exports.create = (req, res) => {
   // Validate request
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
-  // if (Leaderboard.findOne(req.body.teamname)) {
+  // if (Leaderboard.findOne(req.body.teamname) == true) {
   //   return;
   // }
 
