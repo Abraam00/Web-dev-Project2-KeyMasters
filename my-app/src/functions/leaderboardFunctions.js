@@ -4,15 +4,26 @@ const config = require("../config");
 export async function showLeaderboard() {
   return axios.get(`${config.API.BASE_URL}/leaderboard/top10`);
 }
+//trying to set up qr validation for team post/put
+export async function validateQR(url) {
+  console.log(url);
+  return axios.post(`${config.API.BASE_URL}/leaderboard/qr`,
+    { "url": url },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => console.log(url, response.data))
+    .catch((err) => console.log(err));
+}
 
-
-
-export async function createTeam(team) {
-  console.log("this is what is passed:", team);
+export async function createTeam(team, url) {
+  console.log("this is what is passed:", team, url);
   return axios.post(`${config.API.BASE_URL}/leaderboard/create`,
     {
       "teamname": team,
-      "_found": "need to get a url into this"
+      "_found": url//"need to get a url into this"
     },
     {
       headers: {

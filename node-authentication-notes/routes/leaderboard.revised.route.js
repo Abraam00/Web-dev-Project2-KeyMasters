@@ -18,8 +18,8 @@ router.put("/leaderboard/update", leaderboard.update); //alternate attempt
 //router.get('/notes', middleware.verify, notes.findAll);
 router.get("/leaderboard/top10", leaderboard.tofront);
 
-// Retrieve a single Note with noteId
-//router.get('/leaderboard/:leaderboardId', leaderboard.findOne);
+// check QR code validity
+router.post('/leaderboard/qr', leaderboard.validate);
 
 // Update a Note with noteId
 //router.put('/leaderboard/:leaderboardteamname', leaderboard.update);

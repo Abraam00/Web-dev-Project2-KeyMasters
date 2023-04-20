@@ -3,7 +3,7 @@ import "./App.css";
 import cube from "./images/cube.png";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { createTeam, updateTeam } from "./functions/leaderboardFunctions";
+import { createTeam, updateTeam, validateQR } from "./functions/leaderboardFunctions";
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -17,27 +17,24 @@ function QRLanding() {
     console.log(event.target.value);
   };
 
-  // useEffect(() => {
-  //   if (teamName) {
-  //     createTeam(`${teamName}`);
-  //   }
-  // }, [teamName]);
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   //console.log("Team name entered:"` ${teamName}`);
-  //   setTeamName(teamName);
-  //   updateTeam(`${teamName}`, "url to be retrieved");
-  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
+    const url = "https://sshqr.com/randomsequence25";
+    // try {
+    //   validateQR(url);
+    // } catch (error) { };
+
+
+
+
+
     try {
-      createTeam(teamName);
+      createTeam(teamName, url);
       //updateTeam(teamName); //it seems that trying updateTeam first and if 404 then createTeam
       //would be a more streamlined approach requiring a single handler.
 
-    } catch (error) { createTeam(teamName) };
+    } catch (error) { /*createTeam(teamName) */ };
 
     // createTeam(teamName);
 

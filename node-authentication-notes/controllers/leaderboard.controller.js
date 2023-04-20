@@ -135,6 +135,15 @@ exports.restrictToSelf = (role) => {
 //     }//maybe not this?
 // };
 */
+//need to incorporate this somehow.  It doesn't quite work but follows the pattern of the exports below
+exports.validate = async (req, res) => {
+  await QR.findOne(
+    { url: req.body.url }
+  );
+  console.log("valid URL", req.body.url);
+  res.send({ message: "valid qr" });
+};
+
 
 exports.update = async (req, res) => {
   // Find and update the leaderboard for that team
@@ -179,13 +188,6 @@ exports.create = (req, res) => {
   // if (Leaderboard.findOne(req.body.teamname)) {
   //   return;
   // }
-  // *** need to validate the QR code against the qr collection here ***
-  // *** then need to validate QR and teamname against teamname array in leaderboard collection ***
-  // if QR not valid, dump back to leaderboard.
-  // if QR valid but teamname doesn't exist, leaderboard.create
-  // if QR valid but teamname array already contains, then dump back to leaderboard.
-  // if QR valid and teamname array does not contain the URL, then leaderboard.update so the existing
-  // team record can add an element to the _found array.  $push will put the data into the array, but $addToSet
 
   // Create a Note
   const leaderboard = new Leaderboard({
