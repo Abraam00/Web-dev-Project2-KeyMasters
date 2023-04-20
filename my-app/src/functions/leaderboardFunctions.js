@@ -24,18 +24,17 @@ export async function createTeam(team) {
 }
 
 export async function updateTeam(team, url) {
-  return await axios
-    .put(`${config.API.BASE_URL}/leaderboard/update`,
-      {
-        "teamname": team,
-        "_found": url
+  return await axios.put(`${config.API.BASE_URL}/leaderboard/update`,
+    {
+      "teamname": team,
+      "_found": url
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    }
+  )
     .then((response) => console.log(response.data))
     .catch((err) => console.log(err));
 }
