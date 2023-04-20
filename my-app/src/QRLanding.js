@@ -34,13 +34,14 @@ function QRLanding() {
     console.log(`Team name entered: ${teamName}`);
     try {
       createTeam(teamName);
-      //updateTeam(teamName);
+      //updateTeam(teamName); //it seems that trying updateTeam first and if 404 then createTeam
+      //would be a more streamlined approach requiring a single handler.
 
     } catch (error) { createTeam(teamName) };
 
     // createTeam(teamName);
 
-    //updateTeam(`${teamName}`, "url to be retrieved");
+    //updateTeam(`${teamName}`, "need to get a url into this"); //this will not duplicate entry with hardcoded string
   };
 
   return (
