@@ -5,39 +5,47 @@ export async function showLeaderboard() {
   return axios.get(`${config.API.BASE_URL}/leaderboard/top10`);
 }
 
-// export async function checkDB(url) {  how to turn this into something useful for create team action
-//   return await axios
+// export async function createTeam(team) {
+//   console.log("this is what is passed:", team); //not getting anything here?
+//   team = "Dog";
+//   return axios
 //     .post(`${config.API.BASE_URL}/leaderboard/create`,
-//       { teamName: team },
+//       {
+//         body: {
+//           teamname: team
+//         }
+//       },
 //       {
 //         headers: {
 //           "Content-Type": "application/json",
 //         },
-//       }
-//     )
+//       })
 //     .then((response) => console.log(response.data))
 //     .catch((err) => console.log(err));
 // }
 
 export async function createTeam(team) {
-  return axios
-    .post(`${config.API.BASE_URL}/leaderboard/create`,
-      { teamName: team },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-    .then((response) => console.log(response.data))
+  console.log("this is what is passed:", team); //not getting anything here?
+  return axios.post(`${config.API.BASE_URL}/leaderboard/create`,
+    {
+      "teamname": team,
+      "_found": "need to get a url into this"
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => console.log(team, response.data))
     .catch((err) => console.log(err));
 }
 
 export async function updateTeam(team, url) {
   return await axios
-    .post(`${config.API.BASE_URL}/leaderboard/update`,
+    .put(`${config.API.BASE_URL}/leaderboard/update`,
       {
-        teamName: team,
-        _found: url
+        "teamname": team,
+        "_found": url
       },
       {
         headers: {

@@ -172,6 +172,7 @@ exports.tofront = async (req, res) => {
 
 //this below works but restore if new code above doesn't work
 exports.create = (req, res) => {
+
   // Validate request
   // if (!req.body._found) {
   //   return res.status(400).send({
@@ -193,7 +194,7 @@ exports.create = (req, res) => {
 
   // Create a Note
   const leaderboard = new Leaderboard({
-    teamname: req.body.teamname,//|| "Untitled team name",
+    teamname: req.body.teamname || "Untitled team name", //this isn't passing from front end but works in postman
     _found: req.body._found,
     // published: req.body.published ? req.body.published :false,
     //timestamp: req.user
@@ -203,6 +204,7 @@ exports.create = (req, res) => {
   leaderboard
     .save()
     .then((data) => {
+      console.log("this is data in line 207 of lbcontroller", data);
       res.send(data);
     })
     .catch((err) => {

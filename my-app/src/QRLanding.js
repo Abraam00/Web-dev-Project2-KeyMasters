@@ -14,6 +14,7 @@ function QRLanding() {
 
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
+    console.log(event.target.value);
   };
 
   // useEffect(() => {
@@ -32,8 +33,9 @@ function QRLanding() {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
     try {
-      console.log(updateTeam(teamName));
-      // console.log(createTeam(teamName));
+      createTeam(teamName);
+      // console.log("line 37 in QRLanding.js", createTeam(event.target.value));
+      console.log("line 38 in QRLanding.js");
     } catch (error) { };
 
     //updateTeam(`${teamName}`, "url to be retrieved");
