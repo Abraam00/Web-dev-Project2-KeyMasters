@@ -1,7 +1,7 @@
 import "./bootstrap.min.css";
 import "./App.css";
 import cube from "./images/cube.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { createTeam, updateTeam } from "./functions/leaderboardFunctions";
 
@@ -16,11 +16,27 @@ function QRLanding() {
     setTeamName(event.target.value);
   };
 
+  // useEffect(() => {
+  //   if (teamName) {
+  //     createTeam(`${teamName}`);
+  //   }
+  // }, [teamName]);
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   //console.log("Team name entered:"` ${teamName}`);
+  //   setTeamName(teamName);
+  //   updateTeam(`${teamName}`, "url to be retrieved");
+  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
-    createTeam(`${teamName}`);
-    updateTeam(`${teamName}`, "url to be retrieved");
+    try {
+      console.log(updateTeam(teamName));
+      // console.log(createTeam(teamName));
+    } catch (error) { };
+
+    //updateTeam(`${teamName}`, "url to be retrieved");
   };
 
   return (

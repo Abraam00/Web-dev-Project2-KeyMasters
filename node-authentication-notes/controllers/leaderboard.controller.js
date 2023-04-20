@@ -168,18 +168,21 @@ exports.tofront = async (req, res) => {
   res.send(size);
 }; //now lists last updatedAt value for that team
 
+
+
+//this below works but restore if new code above doesn't work
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body._found) {
-    return res.status(400).send({
-      message: "Leaderboard content can not be empty",
-    });
-  }
+  // if (!req.body._found) {
+  //   return res.status(400).send({
+  //     message: "Leaderboard content can not be empty",
+  //   });
+  // }
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
-  if (Leaderboard.findOne(req.body.teamname)) {
-    return;
-  }
+  // if (Leaderboard.findOne(req.body.teamname)) {
+  //   return;
+  // }
   // *** need to validate the QR code against the qr collection here ***
   // *** then need to validate QR and teamname against teamname array in leaderboard collection ***
   // if QR not valid, dump back to leaderboard.
@@ -190,7 +193,7 @@ exports.create = (req, res) => {
 
   // Create a Note
   const leaderboard = new Leaderboard({
-    teamname: req.body.teamname || "Untitled team name",
+    teamname: req.body.teamname,//|| "Untitled team name",
     _found: req.body._found,
     // published: req.body.published ? req.body.published :false,
     //timestamp: req.user
@@ -208,6 +211,9 @@ exports.create = (req, res) => {
       });
     });
 };
+//restore ends here if new code doesn't work
+
+
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
