@@ -26,15 +26,16 @@ function QRLanding() {
       //need if statement here to say if updateTeam() is successful, then return to leaderboard else run createTeam()
       //this currently works if it is a new team...they get added with url hardcoded above.  BUT if existing team, then
       //the existing entry is updated AND a new entry is created.
+
       //createTeam(teamName, url);
       updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
       //would be a more streamlined approach requiring a single handler.
 
     } catch (error) { /*createTeam(teamName) */ };
 
-    createTeam(teamName, url);
+    createTeam(teamName, url); //this function second if the update finds no team to update
 
-    //updateTeam(`${teamName}`, url); //this will not duplicate entry with hardcoded string
+
   };
 
   return (
