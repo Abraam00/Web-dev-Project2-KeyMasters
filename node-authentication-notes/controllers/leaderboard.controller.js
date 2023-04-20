@@ -174,11 +174,6 @@ exports.tofront = async (req, res) => {
 exports.create = (req, res) => {
 
   // Validate request
-  // if (!req.body._found) {
-  //   return res.status(400).send({
-  //     message: "Leaderboard content can not be empty",
-  //   });
-  // }
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
   // if (Leaderboard.findOne(req.body.teamname)) {
