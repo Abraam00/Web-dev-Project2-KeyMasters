@@ -33,10 +33,13 @@ function QRLanding() {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
     try {
-      createTeam(teamName);
+      // createTeam(teamName);
+      updateTeam(teamName);
       // console.log("line 37 in QRLanding.js", createTeam(event.target.value));
       console.log("line 38 in QRLanding.js");
-    } catch (error) { };
+    } catch (error) { createTeam(teamName) };
+
+    // createTeam(teamName);
 
     //updateTeam(`${teamName}`, "url to be retrieved");
   };
