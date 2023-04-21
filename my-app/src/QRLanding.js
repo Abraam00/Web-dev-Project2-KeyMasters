@@ -54,7 +54,7 @@ function QRLanding() {
   //   setTeamName(teamName);
   //   updateTeam(`${teamName}`, "url to be retrieved");
   // };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
     const url = URL;
@@ -65,13 +65,20 @@ function QRLanding() {
       //the existing entry is updated AND a new entry is created.
 
       //createTeam(teamName, url);
-      updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
+      await updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
       //would be a more streamlined approach requiring a single handler.
+      return;
     } catch (error) {
-      /*createTeam(teamName) */
+      console.log(error);
+      if (error.response.status !== 404) {
+        return;
+      }
     }
-
-    createTeam(teamName, url); //this function second if the update finds no team to update
+    try {
+      await createTeam(teamName, url); //this function second if the update finds no team to update
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
