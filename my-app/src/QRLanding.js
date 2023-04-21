@@ -22,6 +22,23 @@ function QRLanding() {
   //   }
   // }, [teamName]);
 
+  
+// this code would make the scanner HTMl
+//<div id ="scanner-container">
+//<video id = "scanner-video"></video>
+//</div>
+
+//this would be the script for the code I believe 
+// const scanner = new QRscanner(document.getElementbyId("scanner-video"), result=>{
+//const url = result;
+//createTeam(url); Calls the createTeam function with extracted url
+//updateteam(url); This calls the updated team with extracted url 
+//});
+
+//scanner.start(); obv starts the scanner
+
+
+
   // const handleSubmit = (event) => {
   //   event.preventDefault();
   //   //console.log("Team name entered:"` ${teamName}`);
