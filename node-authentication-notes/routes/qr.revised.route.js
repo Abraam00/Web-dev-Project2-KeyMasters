@@ -7,12 +7,12 @@ const router = express.Router();
 const qr = require('../controllers/qrcontroller.revised.js');
 
 // Create a new Note
-router.post('/qr', qr.create);
+//router.post('/qr', qr.create);
 
 // Retrieve all Notes
 // NOTE: Only this one uses verify!
 //router.get('/notes', middleware.verify, notes.findAll);
-router.get('/qr', qr.findAll);
+//router.get('/qr', qr.findAll);
 
 // Retrieve a single Note with noteId
 //router.get('/qr/:qrurl', qr.findOne);

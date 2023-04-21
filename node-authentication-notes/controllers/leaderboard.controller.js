@@ -135,6 +135,15 @@ exports.restrictToSelf = (role) => {
 //     }//maybe not this?
 // };
 */
+//need to incorporate this somehow.  It doesn't quite work but follows the pattern of the exports below
+exports.validate = async (req, res) => {
+  await QR.findOne(
+    { url: req.body.url }
+  );
+  console.log("valid URL", req.body.url);
+  res.send({ message: "valid qr" });
+};
+
 
 exports.update = async (req, res) => {
   // Find and update the leaderboard for that team
@@ -172,28 +181,17 @@ exports.tofront = async (req, res) => {
 
 //this below works but restore if new code above doesn't work
 exports.create = (req, res) => {
+
   // Validate request
-  // if (!req.body._found) {
-  //   return res.status(400).send({
-  //     message: "Leaderboard content can not be empty",
-  //   });
-  // }
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
-  // if (Leaderboard.findOne(req.body.teamname)) {
+  // if (Leaderboard.findOne(req.body.teamname) == true) {
   //   return;
   // }
-  // *** need to validate the QR code against the qr collection here ***
-  // *** then need to validate QR and teamname against teamname array in leaderboard collection ***
-  // if QR not valid, dump back to leaderboard.
-  // if QR valid but teamname doesn't exist, leaderboard.create
-  // if QR valid but teamname array already contains, then dump back to leaderboard.
-  // if QR valid and teamname array does not contain the URL, then leaderboard.update so the existing
-  // team record can add an element to the _found array.  $push will put the data into the array, but $addToSet
 
   // Create a Note
   const leaderboard = new Leaderboard({
-    teamname: req.body.teamname,//|| "Untitled team name",
+    teamname: req.body.teamname || "Untitled team name", //this isn't passing from front end but works in postman
     _found: req.body._found,
     // published: req.body.published ? req.body.published :false,
     //timestamp: req.user
@@ -203,6 +201,7 @@ exports.create = (req, res) => {
   leaderboard
     .save()
     .then((data) => {
+      console.log("this is data in line 207 of lbcontroller", data);
       res.send(data);
     })
     .catch((err) => {

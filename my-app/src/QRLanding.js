@@ -3,17 +3,25 @@ import "./App.css";
 import cube from "./images/cube.png";
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { createTeam, updateTeam } from "./functions/leaderboardFunctions";
+import {
+  createTeam,
+  updateTeam,
+  validateQR,
+} from "./functions/leaderboardFunctions";
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
+  const [URL, seturl] = useState("");
+
+  seturl(window.location.href);
   /* it seems to me that we need a variable to capture the url of the scanned QR code to credit
    the team with finding it. This should probably be reflected in the handlers below (if teamname entered
     then capture the current URL so it can be checked against the db */
-
+  console.log(URL);
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
+    console.log(event.target.value);
   };
 
   // useEffect(() => {
@@ -48,12 +56,21 @@ function QRLanding() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
-    try {
-      console.log(updateTeam(teamName));
-      // console.log(createTeam(teamName));
-    } catch (error) { };
+    const url = URL;
 
-    //updateTeam(`${teamName}`, "url to be retrieved");
+    try {
+      //need if statement here to say if updateTeam() is successful, then return to leaderboard else run createTeam()
+      //this currently works if it is a new team...they get added with url hardcoded above.  BUT if existing team, then
+      //the existing entry is updated AND a new entry is created.
+
+      //createTeam(teamName, url);
+      updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
+      //would be a more streamlined approach requiring a single handler.
+    } catch (error) {
+      /*createTeam(teamName) */
+    }
+
+    createTeam(teamName, url); //this function second if the update finds no team to update
   };
 
   return (
