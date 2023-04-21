@@ -14,11 +14,12 @@ function QRLanding() {
   const [teamName, setTeamName] = useState("");
   const [URL, seturl] = useState("");
 
-  seturl(window.location.href);
-  /* it seems to me that we need a variable to capture the url of the scanned QR code to credit
-   the team with finding it. This should probably be reflected in the handlers below (if teamname entered
-    then capture the current URL so it can be checked against the db */
-  console.log(URL);
+  // seturl(window.location.href);  this is causing the re-renders problem
+
+  //  it seems to me that we need a variable to capture the url of the scanned QR code to credit
+  //  the team with finding it. This should probably be reflected in the handlers below (if teamname entered
+  //   then capture the current URL so it can be checked against the db 
+  //console.log(URL);
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
     console.log(event.target.value);
@@ -30,20 +31,20 @@ function QRLanding() {
   //   }
   // }, [teamName]);
 
-  
-// this code would make the scanner HTMl
-//<div id ="scanner-container">
-//<video id = "scanner-video"></video>
-//</div>
 
-//this would be the script for the code I believe 
-// const scanner = new QRscanner(document.getElementbyId("scanner-video"), result=>{
-//const url = result;
-//createTeam(url); Calls the createTeam function with extracted url
-//updateteam(url); This calls the updated team with extracted url 
-//});
+  // this code would make the scanner HTMl
+  //<div id ="scanner-container">
+  //<video id = "scanner-video"></video>
+  //</div>
 
-//scanner.start(); obv starts the scanner
+  //this would be the script for the code I believe 
+  // const scanner = new QRscanner(document.getElementbyId("scanner-video"), result=>{
+  //const url = result;
+  //createTeam(url); Calls the createTeam function with extracted url
+  //updateteam(url); This calls the updated team with extracted url 
+  //});
+
+  //scanner.start(); obv starts the scanner
 
 
 
