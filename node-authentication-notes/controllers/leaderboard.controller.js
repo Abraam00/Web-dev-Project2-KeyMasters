@@ -146,13 +146,18 @@ exports.validate = async (req, res) => {
 
 
 exports.update = async (req, res) => {
-  // Find and update the leaderboard for that team
-  await Leaderboard.updateOne(
-    { teamname: req.body.teamname },
-    { $addToSet: { _found: { $each: [req.body._found] } } }
-  );
-  console.log("updated");
-  res.send({ message: "Leaderboard updated successfully" });
+  try {
+    // Find and update the leaderboard for that team
+    await Leaderboard.updateOne(
+      { teamname: req.body.teamname },
+      { $addToSet: { _found: { $each: [req.body._found] } } }
+    );
+    //console.log("updated");
+    res.send({ message: "Leaderboard updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(404).send({ message: "team not found" });
+  }
 };
 
 exports.tofront = async (req, res) => {
@@ -180,12 +185,12 @@ exports.tofront = async (req, res) => {
 
 
 //this below works but restore if new code above doesn't work
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
   // Validate request
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
-  // if (Leaderboard.findOne(req.body.teamname) == true) {
+  // if (Leaderboard.findOne(req.body.teamname)==) {
   //   return;
   // }
 

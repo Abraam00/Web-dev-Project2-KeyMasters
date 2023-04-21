@@ -57,16 +57,14 @@ function QRLanding() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
-    const url = URL;
+    //const url = URL;
+    const url = "https://sshqr.com/randomsequence5"; //use this for testing.
 
+    //without the try/catch blocks, this works if it is a new team...they get added with url hardcoded above.  
+    //BUT if existing team, then the existing entry is updated AND a new entry is created.
     try {
-      //need if statement here to say if updateTeam() is successful, then return to leaderboard else run createTeam()
-      //this currently works if it is a new team...they get added with url hardcoded above.  BUT if existing team, then
-      //the existing entry is updated AND a new entry is created.
-
       //createTeam(teamName, url);
-      await updateTeam(teamName, url); //it seems that trying updateTeam first and if 404 then createTeam
-      //would be a more streamlined approach requiring a single handler.
+      await updateTeam(teamName, url);
       return;
     } catch (error) {
       console.log(error);
@@ -74,11 +72,14 @@ function QRLanding() {
         return;
       }
     }
-    try {
+    console.log("line78");
+    try {  //in try/catch setup, this doesn't get run if updateTeam fails.  I haven't figured out why
       await createTeam(teamName, url); //this function second if the update finds no team to update
+      console.log("team added to db");
     } catch (error) {
       console.log(error);
     }
+
   };
 
   return (
