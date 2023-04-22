@@ -47,44 +47,23 @@ function QRLanding() {
   //scanner.start(); obv starts the scanner
 
 
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   //console.log("Team name entered:"` ${teamName}`);
-  //   setTeamName(teamName);
-  //   updateTeam(`${teamName}`, "url to be retrieved");
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
     //const url = URL;
     const url = "https://sshqr.com/randomsequence5"; //use this for testing.
 
-    //without the try/catch blocks, this works if it is a new team...they get added with url hardcoded above.  
-    //BUT if existing team, then the existing entry is updated AND a new entry is created.
     try {
-      //createTeam(teamName, url);
+      //await validateQR(url); //this is the next thing to try to incorporate
       await updateTeam(teamName, url);
       console.log("leaving update");
-      await createTeam(teamName, url); //these two lines create double entry for existing team
+      await createTeam(teamName, url); //only runs if the update response is status 404
       console.log("team added to db");
       return;
     } catch (error) {
       console.log(error);
-      // await createTeam(teamName, url);
-      // console.log("team added to db");
-      // console.log("there was an error:", error);
-      // if (error.response.status !== 404) {
-      //   return;
-      // }
     }
-    console.log("line79");
-    // try {  //in try/catch setup, this doesn't get run if updateTeam fails.  I haven't figured out why
-    //   await createTeam(teamName, url); //this function second if the update finds no team to update
-    //   console.log("team added to db");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
   };
 
   return (
