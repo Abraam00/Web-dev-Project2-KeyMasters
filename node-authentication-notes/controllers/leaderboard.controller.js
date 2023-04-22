@@ -146,6 +146,22 @@ exports.validate = async (req, res) => {
 
 
 exports.update = async (req, res) => {
+  //console.log(req.body.teamname);
+  try {
+    const team = await Leaderboard.findOne(
+      { teamname: req.body.teamname }
+    );
+
+    if (!team) {
+      res.status(404).send({ message: "Team not found" });
+      return;
+    }
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "server error" });
+    return;
+  }
   try {
     // Find and update the leaderboard for that team
     await Leaderboard.updateOne(
@@ -156,7 +172,7 @@ exports.update = async (req, res) => {
     res.send({ message: "Leaderboard updated successfully" });
   } catch (error) {
     console.log(error);
-    res.status(404).send({ message: "team not found" });
+    res.status(500).send({ message: "server error" });
   }
 };
 
@@ -190,10 +206,18 @@ exports.create = async (req, res) => {
   // Validate request
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
-  // if (Leaderboard.findOne(req.body.teamname)==) {
-  //   return;
-  // }
+  try {
+    const exists = await Leaderboard.findOne(
+      { teamname: req.body.teamname });
 
+    if (exists) {
+      console.log("Team already exists");
+      return;
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
   // Create a Note
   const leaderboard = new Leaderboard({
     teamname: req.body.teamname || "Untitled team name", //this isn't passing from front end but works in postman

@@ -65,21 +65,26 @@ function QRLanding() {
     try {
       //createTeam(teamName, url);
       await updateTeam(teamName, url);
+      console.log("leaving update");
+      await createTeam(teamName, url); //these two lines create double entry for existing team
+      console.log("team added to db");
       return;
     } catch (error) {
       console.log(error);
-      if (error.response.status !== 404) {
-        return;
-      }
+      // await createTeam(teamName, url);
+      // console.log("team added to db");
+      // console.log("there was an error:", error);
+      // if (error.response.status !== 404) {
+      //   return;
+      // }
     }
-    console.log("line78");
-    try {  //in try/catch setup, this doesn't get run if updateTeam fails.  I haven't figured out why
-      await createTeam(teamName, url); //this function second if the update finds no team to update
-      console.log("team added to db");
-    } catch (error) {
-      console.log(error);
-    }
-
+    console.log("line79");
+    // try {  //in try/catch setup, this doesn't get run if updateTeam fails.  I haven't figured out why
+    //   await createTeam(teamName, url); //this function second if the update finds no team to update
+    //   console.log("team added to db");
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (

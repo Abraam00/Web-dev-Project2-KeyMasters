@@ -35,6 +35,7 @@ export async function createTeam(team, url) {
 }
 
 export async function updateTeam(team, url) {
+  console.log("this is what is passed to update:", team, url);
   return await axios.put(`${config.API.BASE_URL}/leaderboard/update`,
     {
       "teamname": team,
@@ -46,6 +47,6 @@ export async function updateTeam(team, url) {
       },
     }
   )
-    .then((response) => console.log(response.data))
+    .then((response) => console.log(response.data, response.status))
     .catch((err) => console.log(err));
 }
