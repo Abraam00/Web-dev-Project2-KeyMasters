@@ -6,7 +6,7 @@ export async function showLeaderboard() {
 }
 //trying to set up qr validation for team post/put
 export async function validateQR(url) {
-  console.log(url);
+  console.log("This is what is passed to validate", url);
   return axios.post(`${config.API.BASE_URL}/leaderboard/qr`,
     { "url": url },
     {

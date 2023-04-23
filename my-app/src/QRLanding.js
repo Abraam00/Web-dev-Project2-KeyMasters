@@ -48,11 +48,21 @@ function QRLanding() {
     console.log(`Team name entered: ${teamName}`);
     const url = URL;
     //const url = "https://sshqr.com/randomsequence5"; //use this for testing.
-
+    // try {
+    //   await validateQR(url);
+    //   console.log("leaving validate");
+    //   return;
+    // } catch (error) {
+    //   console.log(error);
+    // }
     try {
       //await validateQR(url); //this is the next thing to try to incorporate
+      await validateQR(url);
+      console.log("leaving validate");
       await updateTeam(teamName, url);
       console.log("leaving update");
+      // await validateQR(url);
+      // console.log("leaving validate again");
       await createTeam(teamName, url); //only runs if the update response is status 404
       console.log("team added to db");
       return;

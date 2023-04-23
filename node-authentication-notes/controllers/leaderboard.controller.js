@@ -137,16 +137,26 @@ exports.restrictToSelf = (role) => {
 */
 //need to incorporate this somehow.  It doesn't quite work but follows the pattern of the exports below
 exports.validate = async (req, res) => {
-  await QR.findOne(
-    { url: req.body.url }
-  );
-  console.log("valid URL", req.body.url);
-  res.send({ message: "valid qr" });
+  try {
+    const valid = await QR.findOne(
+      { url: req.body.url }
+    );
+    if (!valid) {
+      res.status(404).send({ message: "QR invalid" });
+      return;
+    }
+    console.log("valid URL", req.body.url);
+    res.send({ message: "valid qr" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "server error" });
+    return;
+  }
 };
 
 
 exports.update = async (req, res) => {
-  //console.log(req.body.teamname);
+
   try {
     const team = await Leaderboard.findOne(
       { teamname: req.body.teamname }
@@ -207,6 +217,12 @@ exports.create = async (req, res) => {
 
   // if team exists in the database exit the creation function and the update function is called in the frontend
   try {
+    const revalidate = await QR.findOne(
+      { url: req.body._found });
+    if (!revalidate) {
+      console.log("QR is not valid")
+      return;
+    }
     const exists = await Leaderboard.findOne(
       { teamname: req.body.teamname });
 
@@ -220,10 +236,9 @@ exports.create = async (req, res) => {
   }
   // Create a Note
   const leaderboard = new Leaderboard({
-    teamname: req.body.teamname || "Untitled team name", //this isn't passing from front end but works in postman
+    teamname: req.body.teamname || "Untitled team name",
     _found: req.body._found,
-    // published: req.body.published ? req.body.published :false,
-    //timestamp: req.user
+
   });
 
   // Save Note in the database
