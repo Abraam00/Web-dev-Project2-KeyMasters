@@ -1,72 +1,57 @@
-const QR = require('../models/qrmodel.revised.js');
+const QR = require("../models/qrmodel.revised.js");
 
 // Create and Save a new Qr code id
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.url) { //requires a URL in the field to proceed
-        return res.status(400).send({
-            message: "URL field can not be empty"
-        });
-    }
-
-    // Create a QR code entry
-    const qr = new QR({
-        url: req.body.url || "Untitled QR code",
-        description: req.body.description,
-        //body: req.user
+  // Validate request
+  if (!req.body.url) {
+    //requires a URL in the field to proceed
+    return res.status(400).send({
+      message: "URL field can not be empty",
     });
+  }
 
-    // Save QR code entry in the database
-    qr.save()
-        .then(data => {
-            res.send(data);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while saving the QR code entry."
-            });
-        });
+  // Create a QR code entry
+  const qr = new QR({
+    url: req.body.url || "Untitled QR code",
+    description: req.body.description,
+    //body: req.user
+  });
+
+  // Save QR code entry in the database
+  qr.save()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while saving the QR code entry.",
+      });
+    });
 };
 //I'm not sure we need the rest of this code.  Need to establish how this can loop to read the entire JSON
 //of all the QR urls and descriptions.  Is there a batch function? I haven't researched it myself.
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-    QR.find()
-        .then(qr => {
-            res.send(qr);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving notes."
-            });
-        });
+  QR.find()
+    .then((qr) => {
+      res.send(qr);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving notes.",
+      });
+    });
 };
 
-// Find a single note with a qrurl 
-exports.findOne = (req, res) => {
-    QR.findByUrl(req.params.qrurl)
-        .then(qr => {
-            if (!qr) {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.qrid
-                });
-            }
-            if (qr.body == req.user) {
-                res.send(qr);
-            }
-            else {
-                res.send({});
-            }
-
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "Note not found with id " + req.params.qrid
-                });
-            }
-            return res.status(500).send({
-                message: "Error retrieving note with id " + req.params.qrid
-            });
-        });
+// Find a single note with a qrurl
+exports.findHint = (req, res) => {
+  const hint = QR.findOne(
+    { url: req.body.url },
+    { _id: 0, timestamps: 0, url: 0, description: 1 }
+  );
+  res.send(hint);
 };
 /*
 // Update a note identified by the noteId in the request

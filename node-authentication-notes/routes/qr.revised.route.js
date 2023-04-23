@@ -1,10 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 // NOTE: Add middleware to verify requests!
 //const middleware = require('../middlewares');
 
-const qr = require('../controllers/qrcontroller.revised.js');
+const qr = require("../controllers/qrcontroller.revised.js");
+
+router.get("/qr/hint", qr.findHint);
 
 // Create a new Note
 //router.post('/qr', qr.create);

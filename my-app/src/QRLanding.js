@@ -7,12 +7,16 @@ import {
   createTeam,
   updateTeam,
   validateQR,
+  getHint,
 } from "./functions/leaderboardFunctions";
+import { findHint } from "../../node-authentication-notes/controllers/qrcontroller.revised";
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
+
+  const hint = findHint(URL);
 
   //  it seems to me that we need a variable to capture the url of the scanned QR code to credit
   //  the team with finding it. This should probably be reflected in the handlers below (if teamname entered
@@ -76,7 +80,9 @@ function QRLanding() {
       <img className="landingImage" src={cube} alt="cube qr code" />
       <div className="landingGridQR">
         <label className="landingFormLabel">Description</label>
-        <textarea className="form-control" rows="5" disabled={true}></textarea>
+        <textarea className="form-control" rows="5" disabled={true}>
+          {hint}
+        </textarea>
         <label className="landingFormLabel">Enter team name:</label>
         <input
           className="form-control"
