@@ -9,28 +9,29 @@ import {
   validateQR,
   getHint,
 } from "./functions/leaderboardFunctions";
+<<<<<<< Updated upstream
+=======
+//the import below generates error so commented out
+//import { findHint } from "../../node-authentication-notes/controllers/qrcontroller.revised.js"; 
+>>>>>>> Stashed changes
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
 
+<<<<<<< Updated upstream
   const hint = getHint(URL);
+=======
+  const hint = ("");
 
-  //  it seems to me that we need a variable to capture the url of the scanned QR code to credit
-  //  the team with finding it. This should probably be reflected in the handlers below (if teamname entered
-  //   then capture the current URL so it can be checked against the db
-  //console.log(URL);
+>>>>>>> Stashed changes
+
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
     console.log(event.target.value);
   };
 
-  // useEffect(() => {
-  //   if (teamName) {
-  //     createTeam(`${teamName}`);
-  //   }
-  // }, [teamName]);
 
   // this code would make the scanner HTMl
   //<div id ="scanner-container">
@@ -51,15 +52,11 @@ function QRLanding() {
     console.log(`Team name entered: ${teamName}`);
     const url = URL;
     //const url = "https://sshqr.com/randomsequence5"; //use this for testing.
-    // try {
-    //   await validateQR(url);
-    //   console.log("leaving validate");
-    //   return;
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
     try {
-      //await validateQR(url); //this is the next thing to try to incorporate
+
+      // await getHint(url);  this isn't working
+      //console.log("leaving gethint");
       await validateQR(url);
       console.log("leaving validate");
       await updateTeam(teamName, url);
