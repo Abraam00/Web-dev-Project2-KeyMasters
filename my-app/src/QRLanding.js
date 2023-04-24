@@ -17,8 +17,8 @@ function QRLanding() {
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
   //const hint = (findHint(URL)); //couldn't make this work with other functions
-  const hint = ("");
-
+  //const hint = (getHint(URL));
+  const hint = "";
 
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
@@ -43,8 +43,8 @@ function QRLanding() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Team name entered: ${teamName}`);
-    const url = URL;
-    //const url = "https://sshqr.com/randomsequence5"; //use this for testing.
+    //const url = URL;
+    const url = "https://sshqr.com/randomsequence23"; //use this for testing.
 
     try {
 
@@ -54,8 +54,8 @@ function QRLanding() {
       console.log("leaving validate");
       await updateTeam(teamName, url);
       console.log("leaving update");
-      // await validateQR(url);
-      // console.log("leaving validate again");
+      //await validateQR(url);
+      //console.log("leaving validate again");
       await createTeam(teamName, url); //only runs if the update response is status 404
       console.log("team added to db");
       return;

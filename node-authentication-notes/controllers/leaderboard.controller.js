@@ -160,6 +160,12 @@ exports.validate = async (req, res) => {
 exports.update = async (req, res) => {
 
   try {
+    const revalidate = await QR.findOne(
+      { url: req.body._found });
+    if (!revalidate) {
+      console.log("QR is not valid")
+      return;
+    }
     const team = await Leaderboard.findOne(
       { teamname: req.body.teamname }
     );
