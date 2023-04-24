@@ -138,6 +138,7 @@ exports.restrictToSelf = (role) => {
 //need to incorporate this somehow.  It doesn't quite work but follows the pattern of the exports below
 exports.validate = async (req, res) => {
   try {
+    //const hint = req.body.descripton; //maybe delete to return to original function
     const valid = await QR.findOne(
       { url: req.body.url }
     );
@@ -147,6 +148,7 @@ exports.validate = async (req, res) => {
     }
     console.log("valid URL", req.body.url);
     res.send({ message: "valid qr" });
+    //res.send({ message: "valid qr" }, { hint }); //remove second element in parentheses to fix original function
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "server error" });
@@ -257,6 +259,14 @@ exports.create = async (req, res) => {
 //restore ends here if new code doesn't work
 
 
+// Find a single note with a qrurl
+exports.findHint = (req, res) => {
+  const hint = QR.findOne(
+    { url: req.body.url },
+    { _id: 0, timestamps: 0, url: 0, description: 1 }
+  );
+  res.send(hint);
+};
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {

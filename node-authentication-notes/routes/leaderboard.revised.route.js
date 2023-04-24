@@ -20,7 +20,7 @@ router.get("/leaderboard/top10", leaderboard.tofront);
 
 // check QR code validity
 router.post('/leaderboard/qr', leaderboard.validate);
-
+router.get('/leaderboard/qr/hint', leaderboard.findHint);
 // Update a Note with noteId
 //router.put('/leaderboard/:leaderboardteamname', leaderboard.update);
 
