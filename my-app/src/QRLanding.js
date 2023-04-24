@@ -9,14 +9,13 @@ import {
   validateQR,
   getHint,
 } from "./functions/leaderboardFunctions";
-import { findHint } from "../../node-authentication-notes/controllers/qrcontroller.revised";
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
 
-  const hint = findHint(URL);
+  const hint = getHint(URL);
 
   //  it seems to me that we need a variable to capture the url of the scanned QR code to credit
   //  the team with finding it. This should probably be reflected in the handlers below (if teamname entered
