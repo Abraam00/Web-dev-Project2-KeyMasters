@@ -9,23 +9,16 @@ import {
   validateQR,
   getHint,
 } from "./functions/leaderboardFunctions";
-<<<<<<< Updated upstream
-=======
 //the import below generates error so commented out
 //import { findHint } from "../../node-authentication-notes/controllers/qrcontroller.revised.js"; 
->>>>>>> Stashed changes
 
 function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
 
-<<<<<<< Updated upstream
-  const hint = getHint(URL);
-=======
   const hint = ("");
 
->>>>>>> Stashed changes
 
   const handleInputChange = (event) => {
     setTeamName(event.target.value);
