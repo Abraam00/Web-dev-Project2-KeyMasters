@@ -4,6 +4,7 @@ import QRLanding from "./QRLanding";
 import React from "react";
 import Navbar from "./navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Leaderboard from "./Leaderboard";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<QRLanding />} />
-        <Route path="/leaderboard" element={<QRLanding />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/QRLanding" element={<QRLanding />} />
       </Routes>
     </BrowserRouter>
