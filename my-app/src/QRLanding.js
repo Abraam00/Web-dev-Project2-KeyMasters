@@ -16,7 +16,7 @@ function QRLanding() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [teamName, setTeamName] = useState("");
   const URL = window.location.href;
-
+  //const hint = (findHint(URL)); //couldn't make this work with other functions
   const hint = ("");
 
 
